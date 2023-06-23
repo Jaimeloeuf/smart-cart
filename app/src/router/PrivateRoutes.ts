@@ -37,6 +37,13 @@ export const ToBuyRoute = <const>{
   meta: { AuthRequirements: AuthType.Private },
 };
 
+export const AddToCartRoute = <const>{
+  name: "add-to-cart",
+  path: "/add-to-cart",
+  component: () => import("../views/core/to-buy/AddToCart.vue"),
+  meta: { AuthRequirements: AuthType.Private },
+};
+
 export const AddItemRoute = <const>{
   name: "add-item",
   path: "/add-item",
@@ -71,6 +78,7 @@ const PrivateRoutes = [
   HomeRoute,
   InventoryRoute,
   ToBuyRoute,
+  AddToCartRoute,
   AddItemRoute,
   ItemDetailRoute,
 ] satisfies Array<PrivateRoute>;

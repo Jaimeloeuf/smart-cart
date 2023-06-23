@@ -5,6 +5,7 @@ import {
   HomeRoute,
   InventoryRoute,
   ToBuyRoute,
+  AddToCartRoute,
   AddItemRoute,
   ItemDetailRoute,
 } from "./PrivateRoutes";
@@ -22,6 +23,7 @@ export const Routes = (<const>[
   HomeRoute,
   InventoryRoute,
   ToBuyRoute,
+  AddToCartRoute,
   AddItemRoute,
   ItemDetailRoute,
 
