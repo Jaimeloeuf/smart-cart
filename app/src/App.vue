@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import NavBar from "./views/components/NavBar.vue";
+</script>
+
 <template>
   <!-- This ensures that the UI is always centered and limited to a width even in desktop mode -->
   <div class="mx-auto max-w-screen-sm">
@@ -35,6 +39,11 @@
         -->
         <div class="m-4">
           <component :is="Component" />
+
+          <!-- Simple hack to allow scroll past navbar height -->
+          <br />
+          <br />
+          <NavBar />
         </div>
 
         <!-- loading UI -->
