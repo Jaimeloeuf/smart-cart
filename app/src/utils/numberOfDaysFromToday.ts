@@ -8,5 +8,5 @@ const today = new Date().getTime();
  * matter if it is not the most up to date as it will get refreshed again when
  * user opens the app again.
  */
-export const calculateDayDifference = (date: string) =>
+export const numberOfDaysFromToday = (date: string) =>
   Math.round((Date.parse(date) - today) / 86400000);

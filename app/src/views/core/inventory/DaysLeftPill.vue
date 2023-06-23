@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { calculateDayDifference } from "../../../utils/calculateDayDifference";
+import { numberOfDaysFromToday } from "../../../utils/numberOfDaysFromToday";
 
 const props = defineProps<{ expiryDate: string }>();
-const daysLeft = calculateDayDifference(props.expiryDate);
+const daysLeft = numberOfDaysFromToday(props.expiryDate);
 </script>
 
 <template>
