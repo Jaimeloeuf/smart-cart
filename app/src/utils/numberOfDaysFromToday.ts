@@ -1,3 +1,5 @@
+import type { ISODateTimeString } from "../types";
+
 const today = new Date().getTime();
 
 /**
@@ -8,5 +10,5 @@ const today = new Date().getTime();
  * matter if it is not the most up to date as it will get refreshed again when
  * user opens the app again.
  */
-export const numberOfDaysFromToday = (date: string) =>
+export const numberOfDaysFromToday = (date: ISODateTimeString) =>
   Math.round((Date.parse(date) - today) / 86400000);

@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { ISODateTimeString } from "../../../types";
 import { numberOfDaysFromToday } from "../../../utils/numberOfDaysFromToday";
 
-const props = defineProps<{ expiryDate: string }>();
+const props = defineProps<{ expiryDate: ISODateTimeString }>();
 const daysLeft = numberOfDaysFromToday(props.expiryDate);
 </script>
 

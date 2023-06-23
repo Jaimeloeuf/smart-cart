@@ -1,3 +1,5 @@
+import type { ISODateTimeString } from "./ISODateTimeString";
+
 /**
  * Type to represent a single Batch detail
  */
@@ -8,8 +10,8 @@ export type Batch = {
   id: string;
   quantity: number;
   unit: string;
-  purchaseDate: string;
-  expiry: string;
+  purchaseDate: ISODateTimeString;
+  expiry: ISODateTimeString;
 };
 
 /**
