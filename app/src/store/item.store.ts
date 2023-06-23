@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import type { Item, Items } from "../types";
-import { mockItems } from "./item.mock";
+import type { Item, Inventory } from "../types";
+import { mockInventory } from "./item.mock";
 
 /**
  * Type of this pinia store's state.
@@ -9,7 +9,7 @@ interface State {
   /**
    * A mapping of all the items
    */
-  items: Items;
+  items: Inventory;
 }
 
 /**
@@ -24,7 +24,7 @@ export const useItem = defineStore("item", {
      */
     async loadItems() {
       // @todo Call API
-      this.items = mockItems;
+      this.items = mockInventory;
     },
 
     getItem(itemID: Item["id"]): Item {

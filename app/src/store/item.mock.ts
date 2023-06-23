@@ -1,4 +1,4 @@
-import type { Items } from "../types";
+import type { Inventory } from "../types";
 
 /**
  * Utility for generating ISODateTime strings
@@ -6,21 +6,27 @@ import type { Items } from "../types";
 const generateIsoDateTimeString = (differenceInMilliseconds = 0) =>
   new Date(new Date().getTime() + differenceInMilliseconds).toISOString();
 
-// Sort by expiring first
-export const mockItems: Items = {
+/**
+ * Mock inventory data expected from API server
+ */
+export const mockInventory: Inventory = {
   "1": {
     id: "1",
     name: "apple",
     category: "fruits",
     batches: [
       {
+        id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 3,
         unit: "units",
+        purchaseDate: generateIsoDateTimeString(-246400000),
         expiry: generateIsoDateTimeString(246400000),
       },
       {
+        id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 6,
         unit: "units",
+        purchaseDate: generateIsoDateTimeString(-345600000),
         expiry: generateIsoDateTimeString(1045600000),
       },
     ],
@@ -31,8 +37,10 @@ export const mockItems: Items = {
     category: "fruits",
     batches: [
       {
+        id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 3,
         unit: "units",
+        purchaseDate: generateIsoDateTimeString(-345600000),
         expiry: generateIsoDateTimeString(345600000),
       },
     ],
@@ -43,8 +51,10 @@ export const mockItems: Items = {
     category: "fruits",
     batches: [
       {
+        id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 3,
         unit: "units",
+        purchaseDate: generateIsoDateTimeString(-645600000),
         expiry: generateIsoDateTimeString(645600000),
       },
     ],
@@ -55,8 +65,10 @@ export const mockItems: Items = {
     category: "fruits",
     batches: [
       {
+        id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 3,
         unit: "units",
+        purchaseDate: generateIsoDateTimeString(-745600000),
         expiry: generateIsoDateTimeString(745600000),
       },
     ],
