@@ -16,12 +16,12 @@ export const mockItems: Items = {
       {
         quantity: 3,
         unit: "units",
-        expiry: generateIsoDateTimeString(86400000),
+        expiry: generateIsoDateTimeString(246400000),
       },
       {
         quantity: 6,
         unit: "units",
-        expiry: generateIsoDateTimeString(345600000),
+        expiry: generateIsoDateTimeString(1045600000),
       },
     ],
   },
@@ -45,7 +45,7 @@ export const mockItems: Items = {
       {
         quantity: 3,
         unit: "units",
-        expiry: generateIsoDateTimeString(345600000),
+        expiry: generateIsoDateTimeString(645600000),
       },
     ],
   },
@@ -57,7 +57,7 @@ export const mockItems: Items = {
       {
         quantity: 3,
         unit: "units",
-        expiry: generateIsoDateTimeString(345600000),
+        expiry: generateIsoDateTimeString(745600000),
       },
     ],
   },

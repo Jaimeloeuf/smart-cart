@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ItemDetailRoute } from "../../../router";
 import type { Item } from "../../../types";
+import DaysLeftPill from "./DaysLeftPill.vue";
 
 defineProps<{ item: Item }>();
 </script>
@@ -22,10 +23,7 @@ defineProps<{ item: Item }>();
           class="mt-2 text-gray-700"
         >
           {{ batch.quantity }} {{ batch.unit }}
-          <span class="ml-2 rounded-lg bg-red-600 p-1.5 text-sm text-white">
-            <!-- @todo Calculate date difference -->
-            3 days left
-          </span>
+          <DaysLeftPill :expiryDate="batch.expiry" />
         </p>
       </template>
 
@@ -36,10 +34,7 @@ defineProps<{ item: Item }>();
           class="mt-2 text-gray-700"
         >
           --- Batch {{ i + 1 }}: {{ batch.quantity }} {{ batch.unit }}
-          <span class="ml-2 rounded-lg bg-red-600 p-1.5 text-sm text-white">
-            <!-- @todo Calculate date difference -->
-            3 days left
-          </span>
+          <DaysLeftPill :expiryDate="batch.expiry" />
         </p>
       </template>
     </div>
