@@ -1,7 +1,13 @@
 import type { RouteObject } from "./RouteTypes";
 
 import { LoginRoute } from "./PublicRoutes";
-import { HomeRoute } from "./PrivateRoutes";
+import {
+  HomeRoute,
+  InventoryRoute,
+  ToBuyRoute,
+  AddItemRoute,
+  ItemDetailRoute,
+} from "./PrivateRoutes";
 
 /**
  * All the **USER DEFINED** route objects to be registered with the router.
@@ -14,6 +20,10 @@ import { HomeRoute } from "./PrivateRoutes";
 export const Routes = (<const>[
   // Private Routes
   HomeRoute,
+  InventoryRoute,
+  ToBuyRoute,
+  AddItemRoute,
+  ItemDetailRoute,
 
   /* Public Routes */
   LoginRoute,

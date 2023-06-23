@@ -17,9 +17,38 @@ import { AuthType } from "./AuthType";
 /* ================================== Core Module Routes =============================== */
 
 export const HomeRoute = <const>{
-  path: "/home",
   name: "home",
+  path: "/home",
   component: () => import("../views/core/Home.vue"),
+  meta: { AuthRequirements: AuthType.Private },
+};
+
+export const InventoryRoute = <const>{
+  name: "inventory",
+  path: "/inventory",
+  component: () => import("../views/core/inventory/Inventory.vue"),
+  meta: { AuthRequirements: AuthType.Private },
+};
+
+export const ToBuyRoute = <const>{
+  name: "to-buy",
+  path: "/to-buy",
+  component: () => import("../views/core/to-buy/ToBuy.vue"),
+  meta: { AuthRequirements: AuthType.Private },
+};
+
+export const AddItemRoute = <const>{
+  name: "add-item",
+  path: "/add-item",
+  component: () => import("../views/core/add-item/NewItem.vue"),
+  meta: { AuthRequirements: AuthType.Private },
+};
+
+export const ItemDetailRoute = <const>{
+  name: "item-detail",
+  path: "/item-detail/:itemID",
+  props: true,
+  component: () => import("../views/core/inventory/ItemDetail.vue"),
   meta: { AuthRequirements: AuthType.Private },
 };
 
@@ -38,7 +67,13 @@ export const HomeRoute = <const>{
  * and ignore the const assertion, which is critical for treating the `name` field as
  * a string literal type for `PrivateRouteNames` type to be properly inferred.
  */
-const PrivateRoutes = [HomeRoute] satisfies Array<PrivateRoute>;
+const PrivateRoutes = [
+  HomeRoute,
+  InventoryRoute,
+  ToBuyRoute,
+  AddItemRoute,
+  ItemDetailRoute,
+] satisfies Array<PrivateRoute>;
 
 /**
  * Sum type of all Private Route object names, used to constrain
