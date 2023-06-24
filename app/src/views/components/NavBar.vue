@@ -7,6 +7,7 @@ const route = useRoute();
 
 <template>
   <div
+    v-show="route.meta.showNavBar"
     class="fixed bottom-0 left-0 h-16 w-full border-t border-gray-200 bg-white"
   >
     <div class="mx-auto grid h-full max-w-lg grid-cols-3 font-medium">

@@ -20,35 +20,35 @@ export const HomeRoute = <const>{
   name: "home",
   path: "/home",
   component: () => import("../views/core/Home.vue"),
-  meta: { AuthRequirements: AuthType.Private },
+  meta: { AuthRequirements: AuthType.Private, showNavBar: true },
 };
 
 export const InventoryRoute = <const>{
   name: "inventory",
   path: "/inventory",
   component: () => import("../views/core/inventory/Inventory.vue"),
-  meta: { AuthRequirements: AuthType.Private },
+  meta: { AuthRequirements: AuthType.Private, showNavBar: true },
 };
 
 export const ToBuyRoute = <const>{
   name: "to-buy",
   path: "/to-buy",
   component: () => import("../views/core/to-buy/ToBuy.vue"),
-  meta: { AuthRequirements: AuthType.Private },
+  meta: { AuthRequirements: AuthType.Private, showNavBar: true },
 };
 
 export const AddToCartRoute = <const>{
   name: "add-to-cart",
   path: "/add-to-cart",
   component: () => import("../views/core/to-buy/AddToCart.vue"),
-  meta: { AuthRequirements: AuthType.Private },
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
 export const AddItemRoute = <const>{
   name: "add-item",
   path: "/add-item",
   component: () => import("../views/core/add-item/NewItem.vue"),
-  meta: { AuthRequirements: AuthType.Private },
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
 export const ItemDetailRoute = <const>{
@@ -56,7 +56,7 @@ export const ItemDetailRoute = <const>{
   path: "/item-detail/:itemID",
   props: true,
   component: () => import("../views/core/inventory/ItemDetail.vue"),
-  meta: { AuthRequirements: AuthType.Private },
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
 /**

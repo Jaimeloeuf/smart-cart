@@ -1,4 +1,9 @@
 /**
+ * Base Meta Details type for route objects to use
+ */
+type BaseMetaDetails = { AuthRequirements: AuthType; showNavBar: boolean };
+
+/**
  * RouteObject enforces the type of the meta property to be an object
  * with an explicit AuthRequirement specified.
  *
@@ -8,19 +13,21 @@
  * only for User defined Route Objects.
  */
 export interface RouteObject extends RouteRecordRaw {
-  meta: { AuthRequirements: AuthType };
+  meta: BaseMetaDetails;
 }
 
 /**
  * A Private route requires AuthRequirements to be specified as Private only
  */
 export interface PrivateRoute extends RouteObject {
-  meta: { AuthRequirements: AuthType.Private };
+  meta: BaseMetaDetails & { AuthRequirements: AuthType.Private };
 }
 
 /**
  * A public route requires AuthRequirements to be specified as Public or PublicOnly
  */
 export interface PublicRoute extends RouteObject {
-  meta: { AuthRequirements: AuthType.Public | AuthType.PublicOnly };
+  meta: BaseMetaDetails & {
+    AuthRequirements: AuthType.Public | AuthType.PublicOnly;
+  };
 }
