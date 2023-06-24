@@ -5,6 +5,7 @@ import { AddItemRoute } from "../../../router";
 import { useItem } from "../../../store";
 import { useSearch } from "../../../composable/Search";
 import InventoryCard from "./InventoryCard.vue";
+import BurgerMenu from "../../components/SideDrawer.vue";
 
 const router = useRouter();
 const itemStore = useItem();
@@ -22,7 +23,9 @@ const { searchInput, results, clearSearchInput } = useSearch(
 
 <template>
   <div>
-    <div class="mb-2 text-3xl">Tan Family</div>
+    <div class="mb-3">
+      <BurgerMenu /><span class="ml-4 text-3xl"> Tan Family</span>
+    </div>
 
     <div class="relative mb-6">
       <div
