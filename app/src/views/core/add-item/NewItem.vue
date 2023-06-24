@@ -36,7 +36,7 @@ function cancel() {
       </button>
     </div>
 
-    <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+    <label class="mb-2 block text-sm font-medium text-gray-900">
       Item Name
     </label>
     <div class="flex">
@@ -84,7 +84,7 @@ function cancel() {
 
     <br />
 
-    <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+    <label class="mb-2 block text-sm font-medium text-gray-900">
       Quantity
     </label>
     <div class="flex flex-row space-x-4">
@@ -104,7 +104,7 @@ function cancel() {
 
     <br />
 
-    <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+    <label class="mb-2 block text-sm font-medium text-gray-900">
       Purchase Date
     </label>
     <input
@@ -115,7 +115,7 @@ function cancel() {
     <br />
     <br />
 
-    <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+    <label class="mb-2 block text-sm font-medium text-gray-900">
       Expiry Date
     </label>
     <input

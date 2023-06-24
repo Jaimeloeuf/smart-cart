@@ -3,7 +3,7 @@ import { HomeRoute } from "../router";
 </script>
 
 <template>
-  <section class="bg-white dark:bg-gray-900">
+  <section class="bg-white">
     <div class="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
       <div class="mx-auto max-w-screen-sm text-center">
         <img src="../assets/404.svg" />

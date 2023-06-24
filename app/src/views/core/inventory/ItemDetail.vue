@@ -23,7 +23,7 @@ const item = itemStore.getItem(props.itemID);
       </button>
     </div>
 
-    <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+    <label class="mb-2 block text-sm font-medium text-gray-900">
       Item Name
     </label>
     <div class="flex">
@@ -37,7 +37,7 @@ const item = itemStore.getItem(props.itemID);
 
     <br />
 
-    <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+    <label class="mb-2 block text-sm font-medium text-gray-900">
       Category
     </label>
     <div class="flex">
