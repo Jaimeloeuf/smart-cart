@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useGroup } from "../../store";
+import type { Group } from "../../types";
 
 const showDrawer = ref<boolean>(false);
 const showGroups = ref<boolean>(true);
 
-// @todo Tmp fake group names
-const groups = ["Tan Family 🫶🏻", "NTU Dorm 👯", "OGP Pantry 🇸🇬"];
+const groupStore = useGroup();
+
+function selectGroup(groupID: Group["id"]) {
+  groupStore.setCurrentGroup(groupID);
+  showDrawer.value = false;
+}
 </script>
 
 <template>
@@ -87,13 +93,16 @@ const groups = ["Tan Family 🫶🏻", "NTU Dorm 👯", "OGP Pantry 🇸🇬"];
 
         <div class="mt-2 space-y-2" :class="{ hidden: !showGroups }">
           <button
-            v-for="(group, i) in groups"
+            v-for="(group, i) in groupStore.groupsArray"
             :key="i"
             class="group flex w-full rounded-lg p-2 pl-7 text-gray-900 transition duration-75"
-            @click="() => {}"
+            :class="{ 'bg-gray-200': group.id === groupStore.currentGroupID }"
+            @click="selectGroup(group.id)"
           >
-            {{ i + 1 }}. {{ group }}
+            {{ i + 1 }}. {{ group.name }}
           </button>
+
+          <!-- @todo Build the button and UI for creating a new group -->
         </div>
       </div>
 

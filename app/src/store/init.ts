@@ -1,4 +1,4 @@
-// import { useUserStore } from "./user.store";
+import { useGroup } from "./group.store";
 
 /**
  * Use this function to initialize all stores that needs
@@ -23,7 +23,5 @@ export async function initStoresOnAppStartIfLoggedIn(): Promise<void> {
   console.log(`Running initStoresOnAppStartIfLoggedIn`);
 
   // Run all of these initializations without any particular order
-  await Promise.all([
-    // useUserStore().refreshUser(),
-  ]);
+  await Promise.all([useGroup().loadGroups()]);
 }

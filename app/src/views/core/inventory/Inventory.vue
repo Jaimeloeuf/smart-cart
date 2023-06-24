@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { AddItemRoute } from "../../../router";
-import { useItem } from "../../../store";
+import { useGroup, useItem } from "../../../store";
 import { useSearch } from "../../../composable/Search";
 import InventoryCard from "./InventoryCard.vue";
 import BurgerMenu from "../../components/SideDrawer.vue";
 
 const router = useRouter();
+const groupStore = useGroup();
 const itemStore = useItem();
-itemStore.loadItems();
 
 /** Ref to the DOM element so that it can be cleared by `clearSearchInputHandler` */
 const searchField = ref<HTMLInputElement | null>(null);
@@ -24,7 +24,9 @@ const { searchInput, results, clearSearchInput } = useSearch(
 <template>
   <div>
     <div class="mb-3">
-      <BurgerMenu /><span class="ml-4 text-3xl"> Tan Family</span>
+      <BurgerMenu /><span class="ml-4 text-3xl">
+        {{ groupStore.currentGroup.name }}
+      </span>
     </div>
 
     <div class="relative mb-6">

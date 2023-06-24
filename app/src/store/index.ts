@@ -4,4 +4,5 @@
 
 export * from "./init";
 
+export * from "./group.store";
 export * from "./item.store";
