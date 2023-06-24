@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 import Fuse from "fuse.js";
 
-type SearchOptions = {
+export type SearchOptions = {
   keys: Array<string>;
 
   /**
@@ -26,7 +26,7 @@ type SearchOptions = {
 export function useSearch<T>(
   searchables: Array<T>,
   searchOptions: SearchOptions,
-  clearSearchInputHandler: () => unknown
+  clearSearchInputHandler?: () => unknown
 ) {
   /** Search Input string variable that is mapped to the search input box */
   const searchInput = ref<string>("");
@@ -51,7 +51,7 @@ export function useSearch<T>(
    */
   function clearSearchInput() {
     searchInput.value = "";
-    clearSearchInputHandler();
+    if (clearSearchInputHandler !== undefined) clearSearchInputHandler();
   }
 
   // expose managed state as return value

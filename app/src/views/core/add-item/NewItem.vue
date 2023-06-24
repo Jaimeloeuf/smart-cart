@@ -1,20 +1,19 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useItem } from "../../../store";
 import { InventoryRoute } from "../../../router";
-import { useSearch } from "../../../composable/Search";
+import { useSuggest } from "../../../composable/Suggest";
 
 const router = useRouter();
 const itemStore = useItem();
 
-/** Ref to the DOM element so that it can be cleared by `clearSearchInputHandler` */
-const searchField = ref<HTMLInputElement | null>(null);
-
-const { searchInput, results } = useSearch(
+const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
   itemStore.itemsArray,
-  { keys: ["name"], threshold: 0.5, resultLimit: 10 },
-  () => searchField.value?.focus()
+  {
+    keys: ["name"],
+    threshold: 0.5,
+    resultLimit: 10,
+  }
 );
 
 function cancel() {
@@ -41,7 +40,6 @@ function cancel() {
       Item Name
     </label>
     <div class="flex">
-      <!-- @todo Auto suggest as they type -->
       <input
         v-model="searchInput"
         type="text"
@@ -54,6 +52,22 @@ function cancel() {
       >
         scan receipt
       </span>
+    </div>
+
+    <!-- Suggestion dropdown -->
+    <div
+      id="dropdown"
+      class="h- z-10 w-full overflow-y-auto rounded-md border border-gray-300"
+      :class="{ hidden: hideDropDown }"
+    >
+      <div
+        v-for="{ item } in results"
+        :key="item.id"
+        class="border-b border-gray-200 px-5 py-3"
+        @click="selectSuggestion(item.name)"
+      >
+        {{ item.name }}
+      </div>
     </div>
 
     <br />
