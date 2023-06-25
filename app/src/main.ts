@@ -44,5 +44,8 @@ createApp(App)
   .use(createPinia().use(piniaPluginPersistedstate))
   .mount("#app");
 
+<<<<<<< HEAD
 // @todo Since no auth is implemented for now, this is always ran to simulate logged in
+=======
+>>>>>>> add groceries wasted
 initStoresOnAppStartIfLoggedIn();
