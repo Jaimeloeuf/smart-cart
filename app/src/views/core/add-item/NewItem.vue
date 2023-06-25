@@ -1,11 +1,20 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useItem } from "../../../store";
+import { useItem, useMisc } from "../../../store";
 import { InventoryRoute } from "../../../router";
 import { useSuggest } from "../../../composable/Suggest";
 
 const router = useRouter();
 const itemStore = useItem();
+const miscStore = useMisc();
+
+const selectedCategory = ref<(typeof miscStore.categories)[number]>(
+  miscStore.categories[0] ?? "None"
+);
+const selectedUnit = ref<(typeof miscStore.units)[number]>(
+  miscStore.units[0] ?? "unit"
+);
 
 const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
   itemStore.itemsArray,
@@ -76,10 +85,17 @@ function cancel() {
       Category
     </label>
     <select
+      v-model="selectedCategory"
       class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
     >
-      <option selected>None</option>
-      <option value="OT">Others</option>
+      <option
+        v-for="category in miscStore.categories"
+        :key="category"
+        :value="category"
+        :selected="selectedCategory === category"
+      >
+        {{ category }}
+      </option>
     </select>
 
     <br />
@@ -95,10 +111,17 @@ function cancel() {
       />
 
       <select
+        v-model="selectedUnit"
         class="block flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
       >
-        <option selected>Unit</option>
-        <option value="OT">Bag</option>
+        <option
+          v-for="unit in miscStore.units"
+          :key="unit"
+          :value="unit"
+          :selected="selectedUnit === unit"
+        >
+          {{ unit }}
+        </option>
       </select>
     </div>
 

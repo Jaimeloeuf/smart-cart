@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { useItem } from "../../../store";
+import { useItem, useMisc } from "../../../store";
 import { ToBuyRoute } from "../../../router";
 import { useSuggest } from "../../../composable/Suggest";
 
 const router = useRouter();
 const itemStore = useItem();
+const miscStore = useMisc();
+
+const selectedUnit = ref<(typeof miscStore.units)[number]>(
+  miscStore.units[0] ?? "unit"
+);
 
 const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
   itemStore.itemsArray,
@@ -75,10 +80,17 @@ function cancel() {
       />
 
       <select
+        v-model="selectedUnit"
         class="block flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
       >
-        <option selected>Unit</option>
-        <option value="OT">Bag</option>
+        <option
+          v-for="unit in miscStore.units"
+          :key="unit"
+          :value="unit"
+          :selected="selectedUnit === unit"
+        >
+          {{ unit }}
+        </option>
       </select>
     </div>
 

@@ -7,3 +7,4 @@ export * from "./init";
 export * from "./group.store";
 export * from "./item.store";
 export * from "./cart.store";
+export * from "./misc-data.store";

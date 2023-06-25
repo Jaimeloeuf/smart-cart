@@ -1,4 +1,5 @@
 import { useGroup } from "./group.store";
+import { useMisc } from "./misc-data.store";
 
 /**
  * Use this function to initialize all stores that needs
@@ -23,5 +24,5 @@ export async function initStoresOnAppStartIfLoggedIn(): Promise<void> {
   console.log(`Running initStoresOnAppStartIfLoggedIn`);
 
   // Run all of these initializations without any particular order
-  await Promise.all([useGroup().loadGroups()]);
+  await Promise.all([useGroup().loadGroups(), useMisc().loadData()]);
 }
