@@ -7,16 +7,20 @@ import { mockInventory } from "./item.mock";
  */
 interface State {
   /**
-   * A mapping of all the items
+   * A mapping of all the items in inventory
    */
   items: Inventory;
 }
 
 /**
- * Use this 'store' to control the global loader component.
+ * Use this 'store' to manage inventory.
  */
 export const useItem = defineStore("item", {
   state: (): State => ({ items: {} }),
+
+  getters: {
+    itemsArray: (state) => Object.values(state.items),
+  },
 
   actions: {
     /**
@@ -27,6 +31,9 @@ export const useItem = defineStore("item", {
       this.items = mockInventory;
     },
 
+    /**
+     * Get a single item with runtime type checking
+     */
     getItem(itemID: Item["id"]): Item {
       const item = this.items[itemID];
       if (item) return item;
@@ -35,12 +42,8 @@ export const useItem = defineStore("item", {
     },
   },
 
-  getters: {
-    itemsArray: (state) => Object.values(state.items),
-  },
-
   /**
-   * Persist item state in local storage.
+   * Persist state to localStorage.
    */
   persist: true,
 });

@@ -6,3 +6,7 @@
 ## Stores
 - [item](./item.store.ts)
     - Stores all items data, and logic to refresh the data and other misc tasks.
+- [cart](./cart.store.ts)
+    - Stores all cart item data, and logic to refresh the data and other misc tasks.
+- [group](./group.store.ts)
+    - Stores all user's group data, and logic to refresh the data and other misc tasks.

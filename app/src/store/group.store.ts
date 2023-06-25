@@ -25,6 +25,20 @@ interface State {
 export const useGroup = defineStore("group", {
   state: (): State => ({ groups: {}, currentGroupID: undefined }),
 
+  getters: {
+    groupsArray: (state) => Object.values(state.groups),
+
+    /**
+     * # ***WARNING***
+     *
+     * Only use the `group` object of this getter if you are 1000% sure that the
+     * `currentGroupID` is set! Since this does type casting to make it easier
+     * for store users to access the current group.
+     */
+    currentGroup: (state) =>
+      state.groups[state.currentGroupID as Group["id"]] as Group,
+  },
+
   actions: {
     /**
      * Load all the groups the current user is a member of
@@ -68,20 +82,6 @@ export const useGroup = defineStore("group", {
       // Load group data after changing current group
       this.loadCurrentGroupData();
     },
-  },
-
-  getters: {
-    groupsArray: (state) => Object.values(state.groups),
-
-    /**
-     * # ***WARNING***
-     *
-     * Only use the `group` object of this getter if you are 1000% sure that the
-     * `currentGroupID` is set! Since this does type casting to make it easier
-     * for store users to access the current group.
-     */
-    currentGroup: (state) =>
-      state.groups[state.currentGroupID as Group["id"]] as Group,
   },
 
   /**

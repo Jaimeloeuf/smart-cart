@@ -8,7 +8,7 @@ defineProps<{ item: Item }>();
 
 <template>
   <router-link
-    :to="{ name: ItemDetailRoute.name, params: { itemID: 1 } }"
+    :to="{ name: ItemDetailRoute.name, params: { itemID: item.id } }"
     class="mb-4 flex flex-row rounded-lg border border-gray-200 bg-white p-6 shadow"
   >
     <div class="flex flex-col">
