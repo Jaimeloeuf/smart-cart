@@ -37,21 +37,36 @@ export const useGroup = defineStore("group", {
       if (this.currentGroupID === undefined) {
         const group = this.groupsArray[0];
         if (group !== undefined) this.setCurrentGroup(group.id);
+      } else {
+        // If current group is already set, load current group data to make sure
+        // it is up to date on app launch.
+        this.loadCurrentGroupData();
       }
+    },
+
+    /**
+     * Load data / details of current group using other stores.
+     */
+    loadCurrentGroupData() {
+      // @todo Use current group ID to load data through the other stores.
+      this.currentGroupID;
+
+      // Call API through other stores to load details of the current group
+      useItem().loadItems();
+      useCart().loadCart();
     },
 
     /**
      * Set the current group
      */
-    async setCurrentGroup(groupID: Group["id"]) {
+    setCurrentGroup(groupID: Group["id"]) {
       if (!(groupID in this.groups))
         throw new Error("Invalid Group ID used when setting current group");
 
       this.currentGroupID = groupID;
 
-      // Call API through other stores to load details of the current group
-      useItem().loadItems();
-      useCart().loadCart();
+      // Load group data after changing current group
+      this.loadCurrentGroupData();
     },
   },
 
