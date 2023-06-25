@@ -2,20 +2,20 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useSearch } from "../../../composable/Search";
-import { useGroup, useItem } from "../../../store";
+import { useGroup, useCart } from "../../../store";
 import { AddToCartRoute } from "../../../router";
-import InventoryCard from "./ToBuyCard.vue";
+import ToBuyCard from "./ToBuyCard.vue";
 import BurgerMenu from "../../components/SideDrawer.vue";
 
 const router = useRouter();
 const groupStore = useGroup();
-const itemStore = useItem();
+const cartStore = useCart();
 
 /** Ref to the DOM element so that it can be cleared by `clearSearchInputHandler` */
 const searchField = ref<HTMLInputElement | null>(null);
 
 const { searchInput, results, clearSearchInput } = useSearch(
-  itemStore.itemsArray,
+  cartStore.cartArray,
   { keys: ["name"], threshold: 0.5, resultLimit: 10 },
   () => searchField.value?.focus()
 );
@@ -69,7 +69,7 @@ const { searchInput, results, clearSearchInput } = useSearch(
 
     <div class="ml-6 text-xl">
       <template v-if="searchInput === ''">
-        {{ itemStore.itemsArray.length }}
+        {{ cartStore.cartArray.length }}
       </template>
       <template v-else>
         {{ results.length }}
@@ -79,8 +79,8 @@ const { searchInput, results, clearSearchInput } = useSearch(
 
     <!-- Show all items if user did not search for anything -->
     <template v-if="searchInput === ''">
-      <template v-for="item in itemStore.itemsArray" :key="item.id">
-        <InventoryCard :item="item" />
+      <template v-for="item in cartStore.cartArray" :key="item.id">
+        <ToBuyCard :item="item" />
       </template>
     </template>
 
@@ -91,7 +91,7 @@ const { searchInput, results, clearSearchInput } = useSearch(
     <!-- Search results -->
     <template v-else>
       <template v-for="{ item } in results" :key="item.id">
-        <InventoryCard :item="item" />
+        <ToBuyCard :item="item" />
       </template>
     </template>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Item } from "../../../types/Item";
+import type { CartItem } from "../../../types";
 
-defineProps<{ item: Item }>();
+defineProps<{ item: CartItem }>();
 </script>
 
 <template>
