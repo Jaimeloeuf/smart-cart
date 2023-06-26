@@ -12,8 +12,8 @@ const generateIsoDateTimeString = (differenceInMilliseconds = 0) =>
 export const mockInventory: Inventory = {
   "1": {
     id: "1",
-    name: "apple",
-    category: "fruits",
+    name: "Apple",
+    category: "Fruits & Vegetables",
     batches: [
       {
         id: Math.trunc(Math.random() * 1000000).toString(),
@@ -33,8 +33,8 @@ export const mockInventory: Inventory = {
   },
   "2": {
     id: "2",
-    name: "orange",
-    category: "fruits",
+    name: "Orange",
+    category: "Fruits & Vegetables",
     batches: [
       {
         id: Math.trunc(Math.random() * 1000000).toString(),
@@ -47,8 +47,8 @@ export const mockInventory: Inventory = {
   },
   "3": {
     id: "3",
-    name: "banana",
-    category: "fruits",
+    name: "Banana",
+    category: "Fruits & Vegetables",
     batches: [
       {
         id: Math.trunc(Math.random() * 1000000).toString(),
@@ -61,8 +61,8 @@ export const mockInventory: Inventory = {
   },
   "4": {
     id: "4",
-    name: "lemon",
-    category: "fruits",
+    name: "Lemon",
+    category: "Fruits & Vegetables",
     batches: [
       {
         id: Math.trunc(Math.random() * 1000000).toString(),

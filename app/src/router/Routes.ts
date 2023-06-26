@@ -4,9 +4,10 @@ import { LoginRoute } from "./PublicRoutes";
 import {
   HomeRoute,
   InventoryRoute,
+  AddItemRoute,
+  AddBatchRoute,
   ToBuyRoute,
   AddToCartRoute,
-  AddItemRoute,
   ItemDetailRoute,
 } from "./PrivateRoutes";
 
@@ -22,9 +23,10 @@ export const Routes = (<const>[
   // Private Routes
   HomeRoute,
   InventoryRoute,
+  AddItemRoute,
+  AddBatchRoute,
   ToBuyRoute,
   AddToCartRoute,
-  AddItemRoute,
   ItemDetailRoute,
 
   /* Public Routes */

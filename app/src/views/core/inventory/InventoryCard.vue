@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ItemDetailRoute } from "../../../router";
+import { ItemDetailRoute, AddBatchRoute } from "../../../router";
 import type { Item } from "../../../types";
 import DaysLeftPill from "./DaysLeftPill.vue";
 
@@ -37,6 +37,13 @@ defineProps<{ item: Item }>();
           <DaysLeftPill :expiryDate="batch.expiry" />
         </p>
       </template>
+
+      <router-link
+        :to="{ name: AddBatchRoute.name, params: { itemID: item.id } }"
+        class="w-fit pt-4 font-medium text-blue-500"
+      >
+        + New Batch
+      </router-link>
     </div>
   </router-link>
 </template>

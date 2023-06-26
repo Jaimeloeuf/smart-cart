@@ -79,8 +79,6 @@ export const useItem = defineStore("item", {
     async addBatch(
       itemID: Item["id"],
       item: {
-        name: string;
-        category: string;
         quantity: number;
         unit: string;
         purchaseDate: string;
