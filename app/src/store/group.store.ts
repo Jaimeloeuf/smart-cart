@@ -48,7 +48,11 @@ export const useGroup = defineStore("group", {
       this.groups = mockGroups;
 
       // Set first group (if avail) as current group if current group is not set.
-      if (this.currentGroupID === undefined) {
+      // If somehow the currentGroupID is invalid, choose a new current groupID to set.
+      if (
+        this.currentGroupID === undefined ||
+        this.groups[this.currentGroupID] === undefined
+      ) {
         const group = this.groupsArray[0];
         if (group !== undefined) this.setCurrentGroup(group.id);
       } else {
@@ -81,6 +85,29 @@ export const useGroup = defineStore("group", {
 
       // Load group data after changing current group
       this.loadCurrentGroupData();
+    },
+
+    /**
+     * Create a new group
+     */
+    createNewGroup(groupName: string) {
+      // @todo call API to create new group
+      const groupID = Math.trunc(Math.random() * 1000000).toString();
+
+      this.groups[groupID] = {
+        id: groupID,
+        createdAt: new Date().toISOString(),
+        name: groupName,
+        members: [
+          {
+            id: Math.trunc(Math.random() * 1000000).toString(),
+            createdAt: new Date().toISOString(),
+            name: "JJ",
+          },
+        ],
+      };
+
+      this.setCurrentGroup(groupID);
     },
   },
 

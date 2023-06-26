@@ -3,12 +3,14 @@ import type { RouteObject } from "./RouteTypes";
 import { LoginRoute } from "./PublicRoutes";
 import {
   HomeRoute,
+  CreateGroupRoute,
+  GroupCreatedRoute,
   InventoryRoute,
+  ItemDetailRoute,
   AddItemRoute,
   AddBatchRoute,
   ToBuyRoute,
   AddToCartRoute,
-  ItemDetailRoute,
 } from "./PrivateRoutes";
 
 /**
@@ -22,12 +24,14 @@ import {
 export const Routes = (<const>[
   // Private Routes
   HomeRoute,
+  CreateGroupRoute,
+  GroupCreatedRoute,
   InventoryRoute,
+  ItemDetailRoute,
   AddItemRoute,
   AddBatchRoute,
   ToBuyRoute,
   AddToCartRoute,
-  ItemDetailRoute,
 
   /* Public Routes */
   LoginRoute,

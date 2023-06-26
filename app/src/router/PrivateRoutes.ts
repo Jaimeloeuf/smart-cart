@@ -23,11 +23,37 @@ export const HomeRoute = <const>{
   meta: { AuthRequirements: AuthType.Private, showNavBar: true },
 };
 
+/* ================================== Group Routes =============================== */
+
+export const CreateGroupRoute = <const>{
+  name: "group-create",
+  path: "/group/create",
+  component: () => import("../views/core/group/CreateGroup.vue"),
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
+};
+
+export const GroupCreatedRoute = <const>{
+  name: "group-created",
+  path: "/group/created",
+  component: () => import("../views/core/group/GroupCreated.vue"),
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
+};
+
+/* ================================== Inventory Routes =============================== */
+
 export const InventoryRoute = <const>{
   name: "inventory",
   path: "/inventory",
   component: () => import("../views/core/inventory/Inventory.vue"),
   meta: { AuthRequirements: AuthType.Private, showNavBar: true },
+};
+
+export const ItemDetailRoute = <const>{
+  name: "item-detail",
+  path: "/item-detail/:itemID",
+  props: true,
+  component: () => import("../views/core/inventory/ItemDetail.vue"),
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
 export const AddItemRoute = <const>{
@@ -45,6 +71,8 @@ export const AddBatchRoute = <const>{
   meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
+/* ================================== Cart Routes =============================== */
+
 export const ToBuyRoute = <const>{
   name: "to-buy",
   path: "/to-buy",
@@ -56,14 +84,6 @@ export const AddToCartRoute = <const>{
   name: "add-to-cart",
   path: "/add-to-cart",
   component: () => import("../views/core/to-buy/AddToCart.vue"),
-  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
-};
-
-export const ItemDetailRoute = <const>{
-  name: "item-detail",
-  path: "/item-detail/:itemID",
-  props: true,
-  component: () => import("../views/core/inventory/ItemDetail.vue"),
   meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
@@ -84,12 +104,14 @@ export const ItemDetailRoute = <const>{
  */
 const PrivateRoutes = [
   HomeRoute,
+  CreateGroupRoute,
+  GroupCreatedRoute,
   InventoryRoute,
+  ItemDetailRoute,
   AddItemRoute,
   AddBatchRoute,
   ToBuyRoute,
   AddToCartRoute,
-  ItemDetailRoute,
 ] satisfies Array<PrivateRoute>;
 
 /**

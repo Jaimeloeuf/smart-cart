@@ -7,11 +7,21 @@ const generateIsoDateTimeString = (differenceInMilliseconds = 0) =>
   new Date(new Date().getTime() + differenceInMilliseconds).toISOString();
 
 /**
+ * Utility for generating random group ID to mock data
+ */
+const generateRandomGroupID = () =>
+  (Math.random() + 1).toString(36).substring(2);
+
+const grp1ID = generateRandomGroupID();
+const grp2ID = generateRandomGroupID();
+const grp3ID = generateRandomGroupID();
+
+/**
  * Mock groups data expected from API server
  */
-export const mockGroups: Groups = {
-  "1": {
-    id: "1",
+const groups: Groups = {
+  [grp1ID]: {
+    id: grp1ID,
     createdAt: generateIsoDateTimeString(-246400000),
     name: "Tan Family 🫶🏻",
     members: [
@@ -42,8 +52,8 @@ export const mockGroups: Groups = {
       },
     ],
   },
-  "2": {
-    id: "2",
+  [grp2ID]: {
+    id: grp2ID,
     createdAt: generateIsoDateTimeString(-246400000),
     name: "OGP Pantry 🇸🇬🫡",
     members: [
@@ -74,8 +84,8 @@ export const mockGroups: Groups = {
       },
     ],
   },
-  "3": {
-    id: "3",
+  [grp3ID]: {
+    id: grp3ID,
     createdAt: generateIsoDateTimeString(-246400000),
     name: "NTU Dorm 👯✨",
     members: [
@@ -107,3 +117,5 @@ export const mockGroups: Groups = {
     ],
   },
 };
+
+export const mockGroups = groups;

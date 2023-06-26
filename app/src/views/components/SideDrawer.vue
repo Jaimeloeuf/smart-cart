@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useGroup } from "../../store";
+import { CreateGroupRoute } from "../../router";
 import type { Group } from "../../types";
 
 const showDrawer = ref<boolean>(false);
@@ -54,7 +55,7 @@ function selectGroup(groupID: Group["id"]) {
     >
       <p class="p-2 text-gray-900">
         <span class="text-2xl">Smart Cart</span>
-        <span class="ml-3 text-3xl">🥹🫶🏻✨</span>
+        <span class="ml-3 text-2xl">🥹🫶🏻✨</span>
       </p>
 
       <div class="w-full">
@@ -102,7 +103,13 @@ function selectGroup(groupID: Group["id"]) {
             {{ i + 1 }}. {{ group.name }}
           </button>
 
-          <!-- @todo Build the button and UI for creating a new group -->
+          <!-- button for creating a new group -->
+          <router-link
+            :to="{ name: CreateGroupRoute.name }"
+            class="group flex w-full rounded-lg p-2 pl-4 text-gray-900 transition duration-75"
+          >
+            + New Group
+          </router-link>
         </div>
       </div>
 
