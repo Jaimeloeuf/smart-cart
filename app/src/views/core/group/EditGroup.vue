@@ -3,26 +3,21 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useGroup } from "../../../store";
 import { GroupCreatedRoute } from "../../../router";
+import type { Group } from "../../../types";
+
+const props = defineProps<{ groupID: Group["id"] }>();
 
 const router = useRouter();
 const groupStore = useGroup();
-const name = ref<string>("");
-
-function cancel() {
-  if (!confirm("Cancel?")) return;
-
-  // Go back instead of going to a fixed route since the previous route could
-  // be any route that can trigger create group from SideDrawer component or
-  // the welcome page when the user first creates a new account with no groups.
-  router.back();
-}
+const group = groupStore.getGroup(props.groupID);
+const name = ref<string>(group.name);
 
 async function save() {
   if (name.value === "") return alert("Please enter a group name!");
 
   if (!confirm("Confirm?")) return;
 
-  await groupStore.createNewGroup(name.value);
+  await groupStore.updateGroupName(group.id, name.value);
 
   router.push({ name: GroupCreatedRoute.name });
 }
@@ -31,7 +26,7 @@ async function save() {
 <template>
   <div>
     <div class="mb-2 flex flex-row justify-center text-center">
-      <button @click="cancel">Cancel</button>
+      <button @click="router.back">Cancel</button>
       <p class="grow text-2xl font-light">New Group</p>
       <button @click="save">Save</button>
     </div>

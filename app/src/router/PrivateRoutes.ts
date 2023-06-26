@@ -39,6 +39,22 @@ export const GroupCreatedRoute = <const>{
   meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
+export const GroupDetailsRoute = <const>{
+  name: "group-details",
+  path: "/group/details/:groupID",
+  props: true,
+  component: () => import("../views/core/group/GroupDetails.vue"),
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
+};
+
+export const EditGroupRoute = <const>{
+  name: "group-edit",
+  path: "/group/edit/:groupID",
+  props: true,
+  component: () => import("../views/core/group/EditGroup.vue"),
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
+};
+
 /* ================================== Inventory Routes =============================== */
 
 export const InventoryRoute = <const>{
@@ -106,6 +122,8 @@ const PrivateRoutes = [
   HomeRoute,
   CreateGroupRoute,
   GroupCreatedRoute,
+  GroupDetailsRoute,
+  EditGroupRoute,
   InventoryRoute,
   ItemDetailRoute,
   AddItemRoute,

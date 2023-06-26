@@ -88,6 +88,18 @@ export const useGroup = defineStore("group", {
     },
 
     /**
+     * Get group object of given `groupID`
+     */
+    getGroup(groupID: Group["id"]) {
+      const group = this.groups[groupID];
+
+      if (group === undefined)
+        throw new Error("Invalid Group ID used while getting");
+
+      return group;
+    },
+
+    /**
      * Create a new group
      */
     createNewGroup(groupName: string) {
@@ -108,6 +120,14 @@ export const useGroup = defineStore("group", {
       };
 
       this.setCurrentGroup(groupID);
+    },
+
+    /**
+     * Update a group's name
+     */
+    updateGroupName(groupID: Group["id"], groupName: string) {
+      // @todo Call API
+      this.getGroup(groupID).name = groupName;
     },
   },
 
