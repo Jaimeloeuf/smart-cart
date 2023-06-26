@@ -9,12 +9,15 @@ const router = useRouter();
 const itemStore = useItem();
 const miscStore = useMisc();
 
+const quantity = ref<number>(1);
 const selectedCategory = ref<(typeof miscStore.categories)[number]>(
   miscStore.categories[0] ?? "None"
 );
 const selectedUnit = ref<(typeof miscStore.units)[number]>(
   miscStore.units[0] ?? "unit"
 );
+const purchaseDate = ref<string>("");
+const expiryDate = ref<string>("");
 
 const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
   itemStore.itemsArray,
@@ -25,10 +28,23 @@ const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
   }
 );
 
-function cancel() {
-  router.push({
-    name: InventoryRoute.name,
+async function addItem() {
+  await itemStore.addItem({
+    name: searchInput.value,
+    category: selectedCategory.value,
+    quantity: quantity.value,
+    unit: selectedUnit.value,
+    purchaseDate: purchaseDate.value,
+    expiry: expiryDate.value,
   });
+
+  router.push({ name: InventoryRoute.name });
+}
+
+function cancel() {
+  if (!confirm("Cancel?")) return;
+
+  router.push({ name: InventoryRoute.name });
 }
 </script>
 
@@ -105,9 +121,9 @@ function cancel() {
     </label>
     <div class="flex flex-row space-x-4">
       <input
-        type="text"
+        v-model="quantity"
+        type="number"
         class="block min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
-        value="1"
       />
 
       <select
@@ -131,6 +147,7 @@ function cancel() {
       Purchase Date
     </label>
     <input
+      v-model="purchaseDate"
       type="date"
       class="w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
     />
@@ -142,6 +159,7 @@ function cancel() {
       Expiry Date
     </label>
     <input
+      v-model="expiryDate"
       type="date"
       class="w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
     />
@@ -159,6 +177,7 @@ function cancel() {
 
       <button
         class="grow rounded-lg bg-green-500 px-5 py-2.5 text-sm font-medium text-white"
+        @click="addItem"
       >
         add
       </button>

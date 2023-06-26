@@ -40,6 +40,63 @@ export const useItem = defineStore("item", {
 
       throw new Error(`Invalid itemID '${itemID}'`);
     },
+
+    /**
+     * Add a new item to inventory
+     */
+    async addItem(item: {
+      name: string;
+      category: string;
+      quantity: number;
+      unit: string;
+      purchaseDate: string;
+      expiry: string;
+    }) {
+      // @todo Call API before pushing locally for pessimistic UI update
+      const itemID = Math.trunc(Math.random() * 1000000).toString();
+
+      this.items[itemID] = {
+        id: itemID,
+        name: item.name,
+        category: item.category,
+
+        // Use given data as the first batch
+        batches: [
+          {
+            id: Math.trunc(Math.random() * 1000000).toString(),
+            quantity: item.quantity,
+            unit: item.unit,
+            purchaseDate: item.purchaseDate,
+            expiry: item.expiry,
+          },
+        ],
+      };
+    },
+
+    /**
+     * Add a new batch to an existing item.
+     */
+    async addBatch(
+      itemID: Item["id"],
+      item: {
+        name: string;
+        category: string;
+        quantity: number;
+        unit: string;
+        purchaseDate: string;
+        expiry: string;
+      }
+    ) {
+      // @todo Call API before pushing locally for pessimistic UI update
+      this.getItem(itemID).batches.push({
+        id: Math.trunc(Math.random() * 1000000).toString(),
+        quantity: item.quantity,
+        unit: item.unit,
+        purchaseDate: item.purchaseDate,
+        expiry: item.expiry,
+      });
+    },
+    },
   },
 
   /**
