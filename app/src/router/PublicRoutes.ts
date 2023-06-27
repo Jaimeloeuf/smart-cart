@@ -11,10 +11,32 @@ import { AuthType } from "./AuthType";
   it can be properly inferred for `PublicRouteNames`.
 */
 
+export const StartRoute = <const>{
+  name: "start",
+  path: "/",
+  component: () => import("../views/core/Start.vue"),
+  meta: { AuthRequirements: AuthType.PublicOnly, showNavBar: false },
+};
+
 export const LoginRoute = <const>{
-  path: "/login",
   name: "login",
-  component: () => import("../views/core/Login.vue"),
+  path: "/login",
+  component: () => import("../views/core/auth/Login.vue"),
+  meta: { AuthRequirements: AuthType.PublicOnly, showNavBar: false },
+};
+
+export const OTPRoute = <const>{
+  name: "OTP",
+  path: "/OTP/:phoneNumber",
+  props: true,
+  component: () => import("../views/core/auth/OTP.vue"),
+  meta: { AuthRequirements: AuthType.PublicOnly, showNavBar: false },
+};
+
+export const SignupRoute = <const>{
+  name: "signup",
+  path: "/signup",
+  component: () => import("../views/core/auth/Signup.vue"),
   meta: { AuthRequirements: AuthType.PublicOnly, showNavBar: false },
 };
 
@@ -33,7 +55,12 @@ export const LoginRoute = <const>{
  * and ignore the const assertion, which is critical for treating the `name` field as
  * a string literal type for `PublicRouteNames` type to be properly inferred.
  */
-const PublicRoutes = [LoginRoute] satisfies Array<PublicRoute>;
+const PublicRoutes = [
+  StartRoute,
+  LoginRoute,
+  OTPRoute,
+  SignupRoute,
+] satisfies Array<PublicRoute>;
 
 /**
  * Sum type of all Public Route object names, used to constrain

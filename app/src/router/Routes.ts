@@ -1,6 +1,6 @@
 import type { RouteObject } from "./RouteTypes";
 
-import { LoginRoute } from "./PublicRoutes";
+import { StartRoute, LoginRoute, OTPRoute, SignupRoute } from "./PublicRoutes";
 import {
   WelcomeRoute,
   HomeRoute,
@@ -42,7 +42,10 @@ export const Routes = (<const>[
   CartItemDetailRoute,
 
   /* Public Routes */
+  StartRoute,
   LoginRoute,
+  OTPRoute,
+  SignupRoute,
 
   /* Public Only Routes */
   // ...

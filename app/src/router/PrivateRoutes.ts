@@ -18,7 +18,7 @@ import { AuthType } from "./AuthType";
 
 export const WelcomeRoute = <const>{
   name: "welcome",
-  path: "/",
+  path: "/welcome",
   component: () => import("../views/core/Welcome.vue"),
   meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };

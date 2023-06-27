@@ -1,6 +1,6 @@
 import { createNewRouter } from "./CreateNewRouter";
 
-import { LoginRoute, HomeRoute } from "./index";
+import { StartRoute, HomeRoute } from "./index";
 // import { auth } from "../firebase";
 
 /**
@@ -15,7 +15,7 @@ const authPredicate = () => true;
  * Router created for this project
  */
 export const router = createNewRouter(
-  LoginRoute.name,
+  StartRoute.name,
   HomeRoute.name,
   authPredicate
 );
