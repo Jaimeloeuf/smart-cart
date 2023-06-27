@@ -14,6 +14,7 @@ import {
   AddBatchRoute,
   ToBuyRoute,
   AddToCartRoute,
+  CartItemDetailRoute,
 } from "./PrivateRoutes";
 
 /**
@@ -38,6 +39,7 @@ export const Routes = (<const>[
   AddBatchRoute,
   ToBuyRoute,
   AddToCartRoute,
+  CartItemDetailRoute,
 
   /* Public Routes */
   LoginRoute,

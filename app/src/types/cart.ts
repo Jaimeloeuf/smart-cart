@@ -6,10 +6,10 @@ import type { ISODateTimeString } from "./ISODateTimeString";
 export type CartItem = {
   id: string;
   name: string;
-  category: string;
   quantity: number;
   unit: string;
   createdAt: ISODateTimeString;
+  images: Array<string>;
 };
 
 /**

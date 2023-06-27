@@ -98,15 +98,23 @@ export const AddBatchRoute = <const>{
 
 export const ToBuyRoute = <const>{
   name: "to-buy",
-  path: "/to-buy",
+  path: "/cart",
   component: () => import("../views/core/to-buy/ToBuy.vue"),
   meta: { AuthRequirements: AuthType.Private, showNavBar: true },
 };
 
 export const AddToCartRoute = <const>{
-  name: "add-to-cart",
-  path: "/add-to-cart",
+  name: "cart-add-item",
+  path: "/cart/add-item",
   component: () => import("../views/core/to-buy/AddToCart.vue"),
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
+};
+
+export const CartItemDetailRoute = <const>{
+  name: "cart-item-detail",
+  path: "/cart/item-detail/:cartItemID",
+  props: true,
+  component: () => import("../views/core/to-buy/CartItemDetail.vue"),
   meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
@@ -138,6 +146,7 @@ const PrivateRoutes = [
   AddBatchRoute,
   ToBuyRoute,
   AddToCartRoute,
+  CartItemDetailRoute,
 ] satisfies Array<PrivateRoute>;
 
 /**

@@ -8,7 +8,8 @@ import { useSearch, type SearchOptions } from "./Search";
 export function useSuggest<T>(
   searchables: Array<T>,
   searchOptions: SearchOptions,
-  clearSearchInputHandler?: () => unknown
+  clearSearchInputHandler?: () => unknown,
+  onClickingSuggestion?: (selectedSuggestion: string) => unknown
 ) {
   const { searchInput, results, clearSearchInput } = useSearch(
     searchables,
@@ -26,6 +27,10 @@ export function useSuggest<T>(
     // update completes so that the searchInput setting won't trigger the drop
     // down to show again.
     setTimeout(() => (hideDropDown.value = true));
+
+    // Run function caller's onclick handler if any
+    if (onClickingSuggestion !== undefined)
+      onClickingSuggestion(selectedSuggestion);
   }
 
   // Watch search input to hide/show dropdown

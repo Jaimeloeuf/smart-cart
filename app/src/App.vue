@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { useNotif } from "./store";
+
 import NavBar from "./views/components/NavBar.vue";
+import Snackbar from "./views/components/Snackbar.vue";
+
+const notifStore = useNotif();
 </script>
 
 <template>
@@ -44,6 +49,7 @@ import NavBar from "./views/components/NavBar.vue";
           <br />
           <br />
           <NavBar />
+          <Snackbar v-if="notifStore.showSnackbar" />
         </div>
 
         <!-- loading UI -->

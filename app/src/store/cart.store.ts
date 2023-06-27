@@ -40,6 +40,39 @@ export const useCart = defineStore("cart", {
 
       throw new Error(`Invalid itemID '${itemID}'`);
     },
+
+    /**
+     * Add a new item to cart
+     */
+    async addToCart(item: { name: string; quantity: number; unit: string }) {
+      // @todo Call API before pushing locally for pessimistic UI update
+      const itemID = Math.trunc(Math.random() * 1000000).toString();
+
+      this.cart[itemID] = {
+        ...item,
+        id: itemID,
+        createdAt: new Date().toISOString(),
+        images: [],
+      };
+    },
+
+    async increaseItemQuantity(itemID: CartItem["id"]) {
+      const item = this.cartArray.find((item) => item.id === itemID);
+      if (item === undefined)
+        throw new Error("Invalid itemID found in increaseItemQuantity");
+
+      // @todo Call API
+      item.quantity += 1;
+    },
+
+    async decreaseItemQuantity(itemID: CartItem["id"]) {
+      const item = this.cartArray.find((item) => item.id === itemID);
+      if (item === undefined)
+        throw new Error("Invalid itemID found in decreaseItemQuantity");
+
+      // @todo Call API
+      if (item.quantity > 1) item.quantity -= 1;
+    },
   },
 
   /**
