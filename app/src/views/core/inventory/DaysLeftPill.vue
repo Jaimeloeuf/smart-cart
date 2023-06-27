@@ -9,8 +9,12 @@ const daysLeft = numberOfDaysFromToday(props.expiryDate);
 <template>
   <!-- Defaults to red colour, and change colour based on days left -->
   <span
-    class="ml-2 rounded-lg bg-red-600 p-1.5 text-sm text-white"
-    :class="{ 'bg-amber-600': daysLeft > 3, 'bg-lime-700': daysLeft > 7 }"
+    class="ml-2 rounded-lg p-1.5 text-sm text-white"
+    :class="{
+      'bg-red-600': daysLeft <= 3,
+      'bg-amber-600': daysLeft > 3,
+      'bg-lime-700': daysLeft > 7,
+    }"
   >
     {{ daysLeft }} day
   </span>

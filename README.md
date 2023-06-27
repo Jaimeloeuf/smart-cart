@@ -20,4 +20,5 @@ Smart Cart helps people avoid over-buying groceries so that we reduce food waste
 
 ### By
 
+- [Gwyneth](https://github.com/GwynethAXY)
 - [JJ](https://github.com/Jaimeloeuf)

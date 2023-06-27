@@ -23,7 +23,7 @@ const groups: Groups = {
   [grp1ID]: {
     id: grp1ID,
     createdAt: generateIsoDateTimeString(-246400000),
-    name: "Tan Family 🫶🏻",
+    name: "Tan Family 🫶🏻💛",
     members: [
       {
         id: Math.trunc(Math.random() * 1000000).toString(),

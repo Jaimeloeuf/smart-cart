@@ -10,14 +10,14 @@ const props = defineProps<{ groupID: Group["id"] }>();
 const router = useRouter();
 const groupStore = useGroup();
 const group = groupStore.getGroup(props.groupID);
-const name = ref<string>(group.name);
+const phone = ref<string>(group.name);
 
 async function save() {
-  if (name.value === "") return alert("Please enter a group name!");
+  if (phone.value === "") return alert("Please enter a group name!");
 
   if (!confirm("Confirm?")) return;
 
-  await groupStore.updateGroupName(group.id, name.value);
+  await groupStore.updateGroupName(group.id, phone.value);
 
   router.push({ name: GroupCreatedRoute.name });
 }
