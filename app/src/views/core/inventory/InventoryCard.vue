@@ -40,7 +40,7 @@ defineProps<{ item: Item }>();
 
       <router-link
         :to="{ name: AddBatchRoute.name, params: { itemID: item.id } }"
-        class="w-fit pt-4 font-medium text-blue-500"
+        class="w-fit pt-4 font-medium text-primary-dark"
       >
         + New Batch
       </router-link>

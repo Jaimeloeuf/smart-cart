@@ -46,17 +46,17 @@ function cancel() {
     </div>
 
     <div class="mb-6">
-      <p class="text-lg text-blue-500">Item</p>
+      <p class="text-lg text-primary-dark">Item*</p>
       <p>{{ item.name }}</p>
     </div>
 
     <div class="mb-6">
-      <p class="text-lg text-blue-500">Category</p>
+      <p class="text-lg text-primary-dark">Category</p>
       <p>{{ item.category }}</p>
     </div>
 
     <div class="mb-6">
-      <p class="text-lg text-blue-500">Quantity</p>
+      <p class="text-lg text-primary-dark">Quantity</p>
       <div class="flex flex-row space-x-4">
         <input
           v-model="quantity"
@@ -66,7 +66,7 @@ function cancel() {
 
         <select
           v-model="selectedUnit"
-          class="block flex-1 rounded-lg border border-gray-300 bg-blue-50 p-2.5 text-gray-900"
+          class="block flex-1 rounded-lg border border-gray-300 bg-primary-bg p-2.5 text-gray-900"
         >
           <option
             v-for="unit in miscStore.units"
@@ -81,21 +81,23 @@ function cancel() {
     </div>
 
     <div class="mb-6">
-      <p class="text-lg text-blue-500">Purchase Date</p>
+      <p class="text-lg text-primary-dark">Purchase Date</p>
       <input
         v-model="purchaseDate"
         type="date"
-        class="w-full rounded-lg border border-gray-300 bg-blue-50 p-2.5 text-gray-900"
+        class="w-full rounded-lg border border-gray-300 bg-primary-bg p-2.5 text-gray-900"
       />
     </div>
 
     <div>
-      <p class="text-lg text-blue-500">Expiry Date</p>
+      <p class="text-lg text-primary-dark">Expiry Date</p>
       <input
         v-model="expiryDate"
         type="date"
-        class="w-full rounded-lg border border-gray-300 bg-blue-50 p-2.5 text-gray-900"
+        class="w-full rounded-lg border border-gray-300 bg-primary-bg p-2.5 text-gray-900"
       />
     </div>
   </div>
+
+  <div class="mt-8 text-primary-dark">*Compulsory field</div>
 </template>

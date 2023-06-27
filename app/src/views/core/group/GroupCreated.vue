@@ -17,11 +17,11 @@ const share = () =>
 <template>
   <div>
     <div class="mb-10 flex flex-row justify-center text-center">
-      <span class="inline-block"></span>
-      <p class="ml-5 grow text-2xl font-light">
+      <router-link :to="{ name: HomeRoute.name }">Close</router-link>
+      <p class="mr-5 grow text-2xl font-light">
         {{ groupStore.currentGroup.name }}
       </p>
-      <router-link :to="{ name: HomeRoute.name }">Close</router-link>
+      <span class="inline-block"></span>
     </div>
 
     <p class="my-6 font-Indie text-xl">
@@ -29,14 +29,14 @@ const share = () =>
     </p>
 
     <div class="mb-6">
-      <p class="mb-1 text-lg text-blue-500">Group Invite Link</p>
-      <p class="rounded-lg border bg-blue-50 p-3">
+      <p class="mb-1 text-lg text-primary-dark">Group Invite Link</p>
+      <p class="rounded-lg border bg-primary-bg p-3">
         {{ groupLink }}
       </p>
     </div>
 
     <button
-      class="mb-4 w-full rounded-lg bg-blue-500 p-3.5 font-medium text-white"
+      class="mb-4 w-full rounded-lg bg-primary-dark p-3.5 font-medium text-white"
       @click="share"
     >
       <svg
@@ -53,7 +53,7 @@ const share = () =>
     </button>
 
     <button
-      class="w-full rounded-lg border border-blue-500 p-3.5 font-medium text-blue-500"
+      class="w-full rounded-lg border border-primary-dark p-3.5 font-medium text-primary-dark"
       @click="copyToClipboard"
     >
       <svg

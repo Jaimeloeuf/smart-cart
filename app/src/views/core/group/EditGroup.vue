@@ -10,14 +10,14 @@ const props = defineProps<{ groupID: Group["id"] }>();
 const router = useRouter();
 const groupStore = useGroup();
 const group = groupStore.getGroup(props.groupID);
-const phone = ref<string>(group.name);
+const name = ref<string>(group.name);
 
 async function save() {
-  if (phone.value === "") return alert("Please enter a group name!");
+  if (name.value === "") return alert("Please enter a group name!");
 
   if (!confirm("Confirm?")) return;
 
-  await groupStore.updateGroupName(group.id, phone.value);
+  await groupStore.updateGroupName(group.id, name.value);
 
   router.push({ name: GroupCreatedRoute.name });
 }
@@ -37,7 +37,7 @@ async function save() {
     <input
       v-model="name"
       type="text"
-      class="block h-16 w-full rounded-lg border border-blue-200 p-2.5 text-2xl text-gray-900"
+      class="block h-16 w-full rounded-lg border border-primary-light p-2.5 text-2xl text-gray-900"
       placeholder="Use a cute name!"
     />
   </div>

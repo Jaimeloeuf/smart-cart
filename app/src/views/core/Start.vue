@@ -13,7 +13,7 @@ import { LoginRoute } from "../../router";
 
       <router-link
         :to="{ name: LoginRoute.name }"
-        class="mt-36 w-full rounded-lg bg-blue-500 p-3.5 text-center font-medium text-white"
+        class="mt-36 w-full rounded-lg bg-primary-dark p-3.5 text-center font-medium text-white"
       >
         Start
       </router-link>

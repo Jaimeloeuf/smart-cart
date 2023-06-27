@@ -47,7 +47,7 @@ async function resendOTP() {
       <input
         v-model="otp"
         type="number"
-        class="my-10 w-1/2 rounded-lg border border-blue-200 p-2.5 text-center text-2xl font-light"
+        class="my-10 w-1/2 rounded-lg border border-primary-light p-2.5 text-center text-2xl font-light"
         placeholder="4 Digit OTP"
       />
 

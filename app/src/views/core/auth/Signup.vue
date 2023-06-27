@@ -20,13 +20,13 @@ function save() {
       <button @click="save">Save</button>
     </div>
 
-    <label class="mb-2 mt-8 block text-sm font-medium text-gray-900">
+    <label class="mb-2 mt-8 block font-medium text-gray-900 text-primary-dark">
       Name
     </label>
     <input
       v-model="name"
       type="text"
-      class="block h-16 w-full rounded-lg border border-blue-200 p-2.5 text-2xl text-gray-900"
+      class="block h-16 w-full rounded-lg border border-primary-light p-2.5 text-2xl text-gray-900"
       placeholder="Use a human name!"
     />
   </div>

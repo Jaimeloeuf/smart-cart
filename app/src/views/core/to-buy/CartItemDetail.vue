@@ -35,13 +35,13 @@ function transferToInventory() {
       <!-- <router-link :to="{ name: EditGroupRoute.name }">Edit</router-link> -->
     </div>
 
-    <div class="mb-6 flex flex-row text-xl">
-      <p class="grow text-blue-500">Item</p>
+    <div class="mb-2 flex flex-row text-xl">
+      <p class="grow text-primary-dark">Item</p>
       <p class="font-light">{{ item.name }}</p>
     </div>
 
     <div class="mb-6 flex flex-row text-xl">
-      <p class="grow text-blue-500">Quantity</p>
+      <p class="grow text-primary-dark">Quantity</p>
       <p class="font-light">{{ item.quantity }} {{ item.unit }}</p>
     </div>
 
@@ -55,7 +55,7 @@ function transferToInventory() {
     </div>
 
     <button
-      class="mb-4 w-full rounded-lg border border-blue-500 p-3.5 font-medium text-blue-500"
+      class="mb-4 w-full rounded-lg border border-primary-dark p-3.5 font-medium text-primary-dark"
       @click="transferToInventory"
     >
       <svg

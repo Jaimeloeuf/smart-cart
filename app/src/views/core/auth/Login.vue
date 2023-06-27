@@ -23,12 +23,12 @@ function next() {
       <button @click="next">Next</button>
     </div>
 
-    <label class="mb-2 mt-8 block text-sm font-medium text-blue-500">
+    <label class="mb-2 mt-8 block font-medium text-primary-dark">
       Phone Number
     </label>
     <div class="flex">
       <span
-        class="inline-flex items-center rounded-l-md border border-r-0 border-blue-200 bg-gray-50 px-3 text-2xl"
+        class="inline-flex items-center rounded-l-md border border-r-0 border-primary-light bg-gray-50 px-3 text-2xl"
       >
         🇸🇬
       </span>
@@ -36,7 +36,7 @@ function next() {
       <input
         v-model="phone"
         type="tel"
-        class="w-full flex-1 rounded-lg rounded-l-none border border-blue-200 p-2.5 text-2xl font-light"
+        class="w-full flex-1 rounded-lg rounded-l-none border border-primary-light p-2.5 text-2xl font-light"
       />
     </div>
   </div>

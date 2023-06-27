@@ -96,7 +96,7 @@ const { searchInput, results, clearSearchInput } = useSearch(
     </template>
 
     <button
-      class="z-90 fixed bottom-20 right-8 h-14 w-14 rounded-full bg-blue-500 p-0 shadow"
+      class="z-90 fixed bottom-20 right-8 h-14 w-14 rounded-full bg-primary-dark p-0 shadow"
       @click="router.push({ name: AddToCartRoute.name })"
     >
       <svg
