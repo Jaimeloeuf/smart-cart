@@ -11,9 +11,8 @@ const daysLeft = numberOfDaysFromToday(props.expiryDate);
   <span
     class="ml-2 rounded-lg p-1.5 text-sm text-white"
     :class="{
-      'bg-red-600': daysLeft <= 3,
-      'bg-amber-600': daysLeft > 3,
-      'bg-lime-700': daysLeft > 7,
+      'bg-red-600': daysLeft <= 7,
+      'bg-amber-600': daysLeft > 7,
     }"
   >
     {{ daysLeft }} day

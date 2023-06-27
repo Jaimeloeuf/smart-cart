@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { HomeRoute, InventoryRoute, ToBuyRoute } from "../../router";
+import { HomeRoute, InventoryRoute, CartRoute } from "../../router";
 
 const route = useRoute();
 </script>
@@ -54,7 +54,7 @@ const route = useRoute();
       </router-link>
 
       <router-link
-        :to="{ name: ToBuyRoute.name }"
+        :to="{ name: CartRoute.name }"
         class="group inline-flex flex-col items-center justify-center px-5"
       >
         <!--
@@ -63,15 +63,15 @@ const route = useRoute();
           first load, so there should be no image loading lag.
         -->
         <img
-          v-show="route.name === ToBuyRoute.name"
+          v-show="route.name === CartRoute.name"
           src="../../assets/navbar-icons/cart-active.svg"
         />
         <img
-          v-show="route.name !== ToBuyRoute.name"
+          v-show="route.name !== CartRoute.name"
           src="../../assets/navbar-icons/cart.svg"
         />
 
-        <span class="text-sm text-gray-500">Cart</span>
+        <span class="text-sm text-gray-500">To Buy</span>
       </router-link>
     </div>
   </div>

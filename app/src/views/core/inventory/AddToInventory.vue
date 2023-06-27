@@ -50,34 +50,43 @@ function cancel() {
 
 <template>
   <div>
-    <div class="mb-2 flex flex-row">
-      <p class="grow text-3xl">New Item</p>
-
-      <button
-        class="rounded-lg bg-gray-400 px-5 py-2.5 text-sm font-medium text-white"
-        @click="cancel"
-      >
-        cancel
-      </button>
+    <div class="mb-8 flex flex-row justify-center text-center">
+      <button @click="cancel">Cancel</button>
+      <p class="grow text-xl">New Item</p>
+      <button @click="addItem">Save</button>
     </div>
 
-    <label class="mb-2 block text-sm font-medium text-gray-900">
-      Item Name
-    </label>
-    <div class="flex">
-      <input
-        v-model="searchInput"
-        type="text"
-        class="block w-full min-w-0 flex-1 rounded-none rounded-l-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
-        placeholder="E.g. Apples"
-      />
-
-      <span
-        class="inline-flex items-center rounded-r-lg border border-l-0 border-gray-300 bg-gray-200 px-3 text-sm text-gray-900"
+    <div
+      class="w-full rounded-lg border bg-primary-dark p-3 text-center text-white"
+    >
+      <svg
+        class="m-0 inline-block h-5 w-6 p-0"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        scan receipt
-      </span>
+        <path
+          d="M4 16C3.56 16 3.1832 15.8432 2.8696 15.5296C2.556 15.216 2.39947 14.8395 2.4 14.4V12H4V14.4H13.6V12H15.2V14.4C15.2 14.84 15.0432 15.2168 14.7296 15.5304C14.416 15.844 14.0395 16.0005 13.6 16H4ZM2.4 7.2V1.6C2.4 1.16 2.5568 0.783201 2.8704 0.469601C3.184 0.156001 3.56053 -0.000531975 4 1.35823e-06H10.4L15.2 4.8V7.2H13.6V5.6H9.6V1.6H4V7.2H2.4ZM0 10.4V8.8H17.6V10.4H0Z"
+          fill="white"
+        />
+      </svg>
+
+      Scan Receipt
+      <input id="image-upload" type="file" class="hidden" />
     </div>
+
+    <div class="my-6 flex items-center">
+      <div class="h-px flex-grow bg-gray-400"></div>
+      <span class="flex-shrink px-4 font-light"> OR </span>
+      <div class="h-px flex-grow bg-gray-400"></div>
+    </div>
+
+    <label class="mb-2 block font-medium text-primary-dark">Item Name*</label>
+    <input
+      v-model="searchInput"
+      type="text"
+      class="block w-full rounded-lg border border-primary-light p-2.5 text-gray-900"
+      placeholder="E.g. Apples"
+    />
 
     <!-- Suggestion dropdown -->
     <div
@@ -97,12 +106,10 @@ function cancel() {
 
     <br />
 
-    <label class="mb-2 block text-sm font-medium text-gray-900">
-      Category
-    </label>
+    <label class="mb-2 block font-medium text-primary-dark">Category</label>
     <select
       v-model="selectedCategory"
-      class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+      class="block w-full rounded-lg bg-primary-bg p-2.5 text-gray-900"
     >
       <option
         v-for="category in miscStore.categories"
@@ -116,19 +123,17 @@ function cancel() {
 
     <br />
 
-    <label class="mb-2 block text-sm font-medium text-gray-900">
-      Quantity
-    </label>
+    <label class="mb-2 block font-medium text-primary-dark">Quantity</label>
     <div class="flex flex-row space-x-4">
       <input
         v-model="quantity"
         type="number"
-        class="block min-w-0 flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+        class="block min-w-0 flex-1 rounded-lg border border-primary-light p-2.5 text-gray-900"
       />
 
       <select
         v-model="selectedUnit"
-        class="block flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+        class="block flex-1 rounded-lg bg-primary-bg p-2.5 text-gray-900"
       >
         <option
           v-for="unit in miscStore.units"
@@ -143,44 +148,25 @@ function cancel() {
 
     <br />
 
-    <label class="mb-2 block text-sm font-medium text-gray-900">
+    <label class="mb-2 block font-medium text-primary-dark">
       Purchase Date
     </label>
     <input
       v-model="purchaseDate"
       type="date"
-      class="w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+      class="w-full rounded-lg bg-primary-bg p-2.5 text-gray-900"
     />
 
     <br />
     <br />
 
-    <label class="mb-2 block text-sm font-medium text-gray-900">
-      Expiry Date
-    </label>
+    <label class="mb-2 block font-medium text-primary-dark">Expiry Date</label>
     <input
       v-model="expiryDate"
       type="date"
-      class="w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+      class="w-full rounded-lg bg-primary-bg p-2.5 text-gray-900"
     />
 
-    <br />
-    <br />
-
-    <div class="flex flex-row space-x-2">
-      <button
-        class="rounded-lg bg-gray-400 px-5 py-2.5 text-sm font-medium text-white"
-        @click="cancel"
-      >
-        cancel
-      </button>
-
-      <button
-        class="grow rounded-lg bg-green-500 px-5 py-2.5 text-sm font-medium text-white"
-        @click="addItem"
-      >
-        add
-      </button>
-    </div>
+    <div class="mt-8 text-primary-dark">*Compulsory field</div>
   </div>
 </template>

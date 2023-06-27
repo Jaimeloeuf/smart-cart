@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useCart, useItem, useMisc, useNotif } from "../../../store";
-import { ToBuyRoute, CartItemDetailRoute } from "../../../router";
+import { CartRoute, CartItemDetailRoute } from "../../../router";
 import { useSuggest } from "../../../composable/Suggest";
 
 const router = useRouter();
@@ -62,12 +62,12 @@ async function addToCart() {
     unit: selectedUnit.value,
   });
 
-  router.push({ name: ToBuyRoute.name });
+  router.push({ name: CartRoute.name });
 }
 
 function cancel() {
   if (!confirm("Cancel?")) return;
-  router.push({ name: ToBuyRoute.name });
+  router.push({ name: CartRoute.name });
 }
 </script>
 
@@ -117,7 +117,7 @@ function cancel() {
 
       <select
         v-model="selectedUnit"
-        class="block flex-1 rounded-lg border bg-primary-bg p-2.5 text-gray-900"
+        class="block flex-1 rounded-lg bg-primary-bg p-2.5 text-gray-900"
       >
         <option
           v-for="unit in miscStore.units"

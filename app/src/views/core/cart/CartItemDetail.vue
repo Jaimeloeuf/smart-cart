@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { useCart } from "../../../store";
-import { ToBuyRoute, AddItemRoute, AddBatchRoute } from "../../../router";
+import { CartRoute, AddItemRoute, AddBatchRoute } from "../../../router";
 
 const props = defineProps<{ cartItemID: string }>();
 
@@ -30,7 +30,7 @@ function transferToInventory() {
 <template>
   <div>
     <div class="mb-6 flex flex-row justify-center text-center">
-      <router-link :to="{ name: ToBuyRoute.name }">Back</router-link>
+      <router-link :to="{ name: CartRoute.name }">Back</router-link>
       <p class="grow text-xl">Details</p>
       <!-- <router-link :to="{ name: EditGroupRoute.name }">Edit</router-link> -->
     </div>

@@ -13,9 +13,9 @@ const cartStore = useCart();
     :to="{ name: CartItemDetailRoute.name, params: { cartItemID: item.id } }"
     class="flex flex-row border-b border-gray-300"
   >
-    <div class="flex w-full flex-row items-center justify-between p-6">
+    <div class="m-3 flex w-full flex-row items-center justify-between pb-3">
       <div class="flex flex-col">
-        <h5 class="mb-2 text-xl font-medium text-gray-800">
+        <h5 class="mb-2 text-xl text-gray-800">
           {{ item.name }}
         </h5>
 

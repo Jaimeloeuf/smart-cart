@@ -12,7 +12,7 @@ import {
   ItemDetailRoute,
   AddItemRoute,
   AddBatchRoute,
-  ToBuyRoute,
+  CartRoute,
   AddToCartRoute,
   CartItemDetailRoute,
 } from "./PrivateRoutes";
@@ -37,7 +37,7 @@ export const Routes = (<const>[
   ItemDetailRoute,
   AddItemRoute,
   AddBatchRoute,
-  ToBuyRoute,
+  CartRoute,
   AddToCartRoute,
   CartItemDetailRoute,
 

@@ -12,7 +12,7 @@ const generateIsoDateTimeString = (differenceInMilliseconds = 0) =>
 export const mockCart: Cart = {
   "1": {
     id: "1",
-    name: "apple",
+    name: "Apple",
     quantity: 3,
     unit: "units",
     createdAt: generateIsoDateTimeString(-246400000),
@@ -20,7 +20,7 @@ export const mockCart: Cart = {
   },
   "2": {
     id: "2",
-    name: "lettuce",
+    name: "Lettuce",
     quantity: 3,
     unit: "units",
     createdAt: generateIsoDateTimeString(-246400000),
@@ -33,7 +33,7 @@ export const mockCart: Cart = {
   },
   "3": {
     id: "3",
-    name: "rice",
+    name: "Rice",
     quantity: 1,
     unit: "bag",
     createdAt: generateIsoDateTimeString(-246400000),
@@ -41,7 +41,7 @@ export const mockCart: Cart = {
   },
   "4": {
     id: "4",
-    name: "lemon",
+    name: "Lemon",
     quantity: 3,
     unit: "units",
     createdAt: generateIsoDateTimeString(-246400000),

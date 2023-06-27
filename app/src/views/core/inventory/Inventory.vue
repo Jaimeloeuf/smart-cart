@@ -67,7 +67,7 @@ const { searchInput, results, clearSearchInput } = useSearch(
       </button>
     </div>
 
-    <div class="mb-2 ml-3 text-xl">
+    <div class="mb-2 ml-3 text-gray-500">
       <template v-if="searchInput === ''">
         {{ itemStore.itemsArray.length }}
       </template>
