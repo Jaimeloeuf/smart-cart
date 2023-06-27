@@ -1,6 +1,16 @@
 <script setup lang="ts">
-import { CreateGroupRoute } from "../../router";
+import { useRouter } from "vue-router";
+import { useGroup } from "../../store";
+import { HomeRoute, CreateGroupRoute } from "../../router";
 import BurgerMenu from "../components/SideDrawer.vue";
+
+// If there is already a current group set, then redirect to the Home view,
+// as the Welcome view should only be shown to new users without any group.
+// If the user already belong in groups but do not have a current group set,
+// on app load it will just choose one group to be the current group.
+if (useGroup().currentGroupID !== undefined) {
+  useRouter().push({ name: HomeRoute.name });
+}
 </script>
 
 <template>
