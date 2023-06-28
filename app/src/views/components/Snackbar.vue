@@ -6,18 +6,15 @@ const notifStore = useNotif();
 
 <template>
   <div
-    class="fixed bottom-10 flex w-full max-w-sm items-center rounded-lg bg-gray-500 p-4 text-white shadow"
-    role="alert"
+    class="fixed bottom-10 flex w-full max-w-sm items-center rounded-lg bg-gray-500 p-3 text-sm text-white shadow"
   >
-    <div class="text-sm font-normal">{{ notifStore.snackBarMessage }}</div>
-    <div class="ml-auto flex items-center space-x-2">
-      <button
-        type="button"
-        class="text-gray-50"
-        @click="notifStore.hideSnackbar"
-      >
-        Got it
-      </button>
-    </div>
+    <div class="font-normal">{{ notifStore.snackBarMessage }}</div>
+    <button
+      type="button"
+      class="whitespace-nowrap text-gray-50"
+      @click="notifStore.hideSnackbar"
+    >
+      Got it
+    </button>
   </div>
 </template>

@@ -2,7 +2,10 @@ import { ref, computed } from "vue";
 import Fuse from "fuse.js";
 
 export type SearchOptions = {
-  keys: Array<string>;
+  /**
+   * Optional to allow string array search
+   */
+  keys?: Array<string>;
 
   /**
    * Use this to limit max number of search results returned to
@@ -34,10 +37,14 @@ export function useSearch<T>(
   /** Create Fuse object and use computed to update it if the searchables get updated */
   const fuse = computed(
     () =>
-      new Fuse(searchables, {
-        keys: searchOptions.keys,
-        threshold: searchOptions.threshold,
-      })
+      new Fuse(
+        searchables,
+
+        // Ternary to keep TS happy because of exact optional properties
+        searchOptions.keys
+          ? { keys: searchOptions.keys, threshold: searchOptions.threshold }
+          : { threshold: searchOptions.threshold }
+      )
   );
 
   /** Continously search as user input changes. */

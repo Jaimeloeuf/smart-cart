@@ -25,7 +25,7 @@ export const useNotif = defineStore("notif", {
     /**
      * Display a snack bar
      */
-    setSnackbar(message: string, timeout = 3000) {
+    setSnackbar(message: string, timeout = 5000) {
       this.showSnackbar = true;
       this.snackBarMessage = message;
 

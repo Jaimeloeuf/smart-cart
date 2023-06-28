@@ -18,9 +18,16 @@ const selectedUnit = ref<(typeof miscStore.units)[number]>(
 
 const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
   // Combines both existing cart items and inventory items for suggestion.
-  [...cartStore.cartArray, ...itemStore.itemsArray],
+  // Converting them to just strings first so that Set can be used to remove
+  // duplicates automatically and only keep unique values, and it is fine since
+  // the selection only requires the item name string anyways.
+  Array.from(
+    new Set([
+      ...cartStore.cartArray.map((item) => item.name),
+      ...itemStore.itemsArray.map((item) => item.name),
+    ])
+  ),
   {
-    keys: ["name"],
     threshold: 0.5,
     resultLimit: 10,
   },
@@ -30,18 +37,25 @@ const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
   // Function that runs on user clicking a suggested item name.
   // Will redirect user to the cart item detail view if item already exists in cart.
   function (selectedSuggestion: string) {
-    // Check if the selected item name suggestion is an existing item
-    const existingItem = cartStore.cartArray.find(
+    const existsInCart = cartStore.cartArray.find(
       (cartItem) => cartItem.name === selectedSuggestion
     );
 
-    if (existingItem !== undefined) {
+    if (existsInCart !== undefined) {
+      const existsInInventory = itemStore.itemsArray.find(
+        (item) => item.name === selectedSuggestion
+      );
+
       // Show snackbar notification to let user know about the redirect reason.
-      notifStore.setSnackbar("Note: You have this item in your cart");
+      notifStore.setSnackbar(
+        existsInInventory
+          ? "Note: You have this item in both your Cart and Inventory!"
+          : "Note: You have this item in your Cart!"
+      );
 
       router.push({
         name: CartItemDetailRoute.name,
-        params: { cartItemID: existingItem.id },
+        params: { cartItemID: existsInCart.id },
       });
     }
     // If it is not an item in cart, then the suggestion must have came from inventory.
@@ -97,11 +111,11 @@ function cancel() {
     >
       <div
         v-for="{ item } in results"
-        :key="item.id"
+        :key="item"
         class="border-b border-gray-200 px-5 py-3"
-        @click="selectSuggestion(item.name)"
+        @click="selectSuggestion(item)"
       >
-        {{ item.name }}
+        {{ item }}
       </div>
     </div>
 

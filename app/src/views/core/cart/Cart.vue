@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import { useSearch } from "../../../composable/Search";
 import { useGroup, useCart } from "../../../store";
 import { AddToCartRoute } from "../../../router";
-import ToBuyCard from "./ToBuyCard.vue";
+import CartCard from "./CartCard.vue";
 import BurgerMenu from "../../components/SideDrawer.vue";
 
 const router = useRouter();
@@ -80,7 +80,7 @@ const { searchInput, results, clearSearchInput } = useSearch(
     <!-- Show all items if user did not search for anything -->
     <template v-if="searchInput === ''">
       <template v-for="item in cartStore.cartArray" :key="item.id">
-        <ToBuyCard :item="item" />
+        <CartCard :item="item" />
       </template>
     </template>
 
@@ -91,7 +91,7 @@ const { searchInput, results, clearSearchInput } = useSearch(
     <!-- Search results -->
     <template v-else>
       <template v-for="{ item } in results" :key="item.id">
-        <ToBuyCard :item="item" />
+        <CartCard :item="item" />
       </template>
     </template>
 
