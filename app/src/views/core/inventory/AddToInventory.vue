@@ -109,7 +109,7 @@ function cancel() {
     <label class="mb-2 block font-medium text-primary-dark">Category</label>
     <select
       v-model="selectedCategory"
-      class="block w-full rounded-lg bg-primary-bg p-2.5 text-gray-900"
+      class="block w-full appearance-none rounded-lg bg-primary-bg p-2.5 text-gray-900"
     >
       <option
         v-for="category in miscStore.categories"
@@ -123,50 +123,50 @@ function cancel() {
 
     <br />
 
-    <label class="mb-2 block font-medium text-primary-dark">Quantity</label>
-    <div class="flex flex-row space-x-4">
-      <input
-        v-model="quantity"
-        type="number"
-        class="block min-w-0 flex-1 rounded-lg border border-primary-light p-2.5 text-gray-900"
-      />
+    <label class="mb-4 block font-medium text-primary-dark">
+      Quantity
 
-      <select
-        v-model="selectedUnit"
-        class="block flex-1 rounded-lg bg-primary-bg p-2.5 text-gray-900"
-      >
-        <option
-          v-for="unit in miscStore.units"
-          :key="unit"
-          :value="unit"
-          :selected="selectedUnit === unit"
+      <div class="flex flex-row space-x-4">
+        <input
+          v-model="quantity"
+          type="number"
+          class="block min-w-0 flex-1 rounded-lg border border-primary-light p-2.5 text-gray-900"
+        />
+
+        <select
+          v-model="selectedUnit"
+          class="block flex-1 rounded-lg bg-primary-bg p-2.5 text-gray-900"
         >
-          {{ unit }}
-        </option>
-      </select>
+          <option
+            v-for="unit in miscStore.units"
+            :key="unit"
+            :value="unit"
+            :selected="selectedUnit === unit"
+          >
+            {{ unit }}
+          </option>
+        </select>
+      </div>
+    </label>
+
+    <div class="mb-4">
+      <label class="font-medium text-primary-dark"> Purchase Date </label>
+      <input
+        v-model="purchaseDate"
+        type="date"
+        class="w-full appearance-none rounded-lg bg-primary-bg p-3 text-gray-900"
+      />
     </div>
 
-    <br />
+    <div class="mb-4">
+      <label class="font-medium text-primary-dark"> Expiry Date </label>
+      <input
+        v-model="expiryDate"
+        type="date"
+        class="w-full appearance-none rounded-lg bg-primary-bg p-3 text-gray-900"
+      />
+    </div>
 
-    <label class="mb-2 block font-medium text-primary-dark">
-      Purchase Date
-    </label>
-    <input
-      v-model="purchaseDate"
-      type="date"
-      class="w-full rounded-lg bg-primary-bg p-2.5 text-gray-900"
-    />
-
-    <br />
-    <br />
-
-    <label class="mb-2 block font-medium text-primary-dark">Expiry Date</label>
-    <input
-      v-model="expiryDate"
-      type="date"
-      class="w-full rounded-lg bg-primary-bg p-2.5 text-gray-900"
-    />
-
-    <div class="mt-8 text-primary-dark">*Compulsory field</div>
+    <div class="mt-6 text-primary-dark">*Compulsory field</div>
   </div>
 </template>

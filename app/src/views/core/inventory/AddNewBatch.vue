@@ -85,7 +85,7 @@ function cancel() {
       <input
         v-model="purchaseDate"
         type="date"
-        class="w-full rounded-lg border border-gray-300 bg-primary-bg p-2.5 text-gray-900"
+        class="w-full appearance-none rounded-lg border border-gray-300 bg-primary-bg p-2.5 text-gray-900"
       />
     </div>
 
@@ -94,7 +94,7 @@ function cancel() {
       <input
         v-model="expiryDate"
         type="date"
-        class="w-full rounded-lg border border-gray-300 bg-primary-bg p-2.5 text-gray-900"
+        class="w-full appearance-none rounded-lg border border-gray-300 bg-primary-bg p-2.5 text-gray-900"
       />
     </div>
   </div>

@@ -49,8 +49,8 @@ const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
       // Show snackbar notification to let user know about the redirect reason.
       notifStore.setSnackbar(
         existsInInventory
-          ? "Note: You have this item in both your Cart and Inventory!"
-          : "Note: You have this item in your Cart!"
+          ? "You have this item in both your Cart and Inventory!"
+          : "You have this item in your Cart!"
       );
 
       router.push({

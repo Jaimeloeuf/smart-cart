@@ -79,8 +79,19 @@ const { searchInput, results, clearSearchInput } = useSearch(
 
     <!-- Show all items if user did not search for anything -->
     <template v-if="searchInput === ''">
-      <template v-for="item in cartStore.cartArray" :key="item.id">
-        <CartCard :item="item" />
+      <!-- If there is no item in cart -->
+      <template v-if="cartStore.cartArray.length === 0">
+        <div
+          class="flex h-[50vh] flex-col items-center justify-center font-light"
+        >
+          You have no groceries to buy
+        </div>
+      </template>
+
+      <template v-else>
+        <template v-for="item in cartStore.cartArray" :key="item.id">
+          <CartCard :item="item" />
+        </template>
       </template>
     </template>
 

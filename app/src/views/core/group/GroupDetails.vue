@@ -16,6 +16,10 @@ const share = () =>
     title: "Smart Cart group invite link 💛",
     text: "Join me to SMART CART the world!",
   });
+
+async function leaveGroup() {
+  if (!confirm("Are you sure you want to leave?")) return;
+}
 </script>
 
 <template>
@@ -85,5 +89,12 @@ const share = () =>
         {{ member.name }}
       </div>
     </div>
+
+    <button
+      class="w-full rounded-lg border border-red-500 p-2 text-red-500"
+      @click="leaveGroup"
+    >
+      Leave Group
+    </button>
   </div>
 </template>

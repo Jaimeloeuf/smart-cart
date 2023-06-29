@@ -94,7 +94,6 @@ export const useItem = defineStore("item", {
         expiry: item.expiry,
       });
     },
-    },
   },
 
   /**
