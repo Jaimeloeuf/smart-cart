@@ -16,12 +16,12 @@ const wastedStore = useWasted();
   <div class="mb-2 text-xl text-[#9E2706]">Groceries to Finish This Week</div>
 
   <div class="mb-10 flex flex-row rounded-lg bg-[#9E2706] bg-opacity-10 p-1">
-    <table class="w-full text-left text-sm m-2 h-fit">
+    <table class="m-2 h-fit w-full text-left text-sm">
       <thead class="border-b border-gray-500">
         <tr>
-          <th scope="col" class="px-6 py-2 font-normal">Item</th>
-          <th scope="col" class="px-6 py-2 font-normal">Quantity</th>
-          <th scope="col" class="px-6 py-2 font-normal">Expiry</th>
+          <th scope="col" class="px-6 py-2">Item</th>
+          <th scope="col" class="px-6 py-2">Quantity</th>
+          <th scope="col" class="px-6 py-2">Expiry</th>
         </tr>
       </thead>
       <tbody>
@@ -60,7 +60,7 @@ const wastedStore = useWasted();
 
   <div class="mb-4 text-xl">Groceries Wasted</div>
   <div class="mb-4 flex flex-row rounded-lg bg-[#B2B2B2] bg-opacity-10 p-6">
-    <table class="w-full text-left m-auto h-fit">
+    <table class="m-auto h-fit w-full text-left">
       <thead class="w-full border-b border-gray-500 border-opacity-50">
         <tr>
           <th scope="col" class="px-6 py-3">Item</th>
