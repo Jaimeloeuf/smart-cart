@@ -20,13 +20,20 @@ export const useWasted = defineStore("wasted", {
 
   getters: {
     cartArray: (state) => Object.values(state.wasted),
+
+    wastedGroceriesAmount: (state) =>
+    Object.values(state.wasted).length, //[state.wasted as Wasted["id"]] as Wasted,
+
+    wastedGroceries: (state) =>
+    state.wasted
+
   },
 
   actions: {
     /**
      * Load cart of the selected group ID
      */
-    async loadCart() {
+    async loadWastedItems() {
       // @todo Call API
       this.wasted = mockWastes;
     },

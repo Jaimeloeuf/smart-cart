@@ -16,17 +16,19 @@ const wastedStore = useWasted();
   <div class="mb-2 text-xl text-[#9E2706]">Groceries to Finish This Week</div>
 
   <div class="mb-10 flex flex-row rounded-lg bg-[#9E2706] bg-opacity-10 p-1">
-    <table class="text-left text-sm">
-      <thead class="w-full border-b border-gray-500">
+    <table class="w-full text-left text-sm m-2 h-fit">
+      <thead class="border-b border-gray-500">
         <tr>
-          <th scope="col" class="px-6 py-2">Item</th>
-          <th scope="col" class="px-6 py-2">Quantity</th>
-          <th scope="col" class="px-6 py-2">Expiry</th>
+          <th scope="col" class="px-6 py-2 font-normal">Item</th>
+          <th scope="col" class="px-6 py-2 font-normal">Quantity</th>
+          <th scope="col" class="px-6 py-2 font-normal">Expiry</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row" class="px-6 py-2" rowspan="2">Spring Onion</th>
+        <tr class="h-full w-full">
+          <th scope="row" class="px-6 py-2 font-normal" rowspan="2">
+            Spring Onion
+          </th>
           <td class="px-6 py-2">1 stalk</td>
           <td class="px-6 py-2">1 day</td>
         </tr>
@@ -35,7 +37,7 @@ const wastedStore = useWasted();
           <td class="px-6 py-2">7 days</td>
         </tr>
         <tr>
-          <th scope="row" class="px-6 py-2">Apples</th>
+          <th scope="row" class="px-6 py-2 font-normal">Apples</th>
           <td class="px-6 py-2">Black</td>
           <td class="px-6 py-2">5 days</td>
         </tr>
@@ -49,18 +51,16 @@ const wastedStore = useWasted();
       <div
         class="mb-4 rounded-lg border border-gray-200 bg-[#24484E] bg-opacity-10 p-6 text-center font-Indie text-2xl"
       >
-        <!-- <div> {{ wastedStore }} groceries </div> -->
-        <div>2 groceries</div>
+        <div>{{ wastedStore.wastedGroceriesAmount }} groceries</div>
         <div>thrown out in the past month</div>
       </div>
-       <img class ="grow" src="../../assets/LadyEating.svg" />
+      <img class="grow" src="../../assets/LadyEating.svg" />
     </div>
-
   </div>
 
   <div class="mb-4 text-xl">Groceries Wasted</div>
-  <div class="mb-4 flex flex-row rounded-lg border border-gray-200 p-6">
-    <table class="text-left">
+  <div class="mb-4 flex flex-row rounded-lg bg-[#B2B2B2] bg-opacity-10 p-6">
+    <table class="w-full text-left m-auto h-fit">
       <thead class="w-full border-b border-gray-500 border-opacity-50">
         <tr>
           <th scope="col" class="px-6 py-3">Item</th>
@@ -68,13 +68,9 @@ const wastedStore = useWasted();
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row" class="px-6 py-2">Peanut Butter</th>
-          <td class="px-6 py-2">1/4 jar</td>
-        </tr>
-        <tr>
-          <th scope="row" class="px-6 py-2">Bread</th>
-          <td class="px-6 py-2">2 slices</td>
+        <tr v-for="(item, i) in wastedStore.cartArray" :key="i">
+          <th scope="row" class="px-6 py-2 font-normal">{{ item.name }}</th>
+          <td class="px-6 py-2">{{ item.quantity + " " + item.unit }}</td>
         </tr>
       </tbody>
     </table>

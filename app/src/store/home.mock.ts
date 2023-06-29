@@ -12,14 +12,14 @@ import { Wasted } from "../types/wasted";
 export const mockWastes: Wasted = {
  "1": {
    id: "1",
-   name: "peanut butter",
+   name: "Peanut Butter",
    quantity: 0.25,
    unit: "jar",
    wastedAt: generateIsoDateTimeString(-246400000),
  },
  "2": {
    id: "2",
-   name: "bread",
+   name: "Bread",
    quantity: 2,
    unit: "slices",
    wastedAt: generateIsoDateTimeString(-246400000),
