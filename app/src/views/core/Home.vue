@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useGroup } from "../../store";
+import { useGroup, useWasted } from "../../store";
 import BurgerMenu from "../components/SideDrawer.vue";
 
 const groupStore = useGroup();
+const wastedStore = useWasted();
 </script>
 
 <template>
@@ -41,7 +42,6 @@ const groupStore = useGroup();
       </tbody>
     </table>
   </div>
-
   <div class="mb-4">
     <div class="text-xl text-[#24484E]">Let's Do Our Part to</div>
     <div class="font-Indie text-3xl text-[#24484E]">SAVE FOOD</div>
@@ -49,11 +49,13 @@ const groupStore = useGroup();
       <div
         class="mb-4 rounded-lg border border-gray-200 bg-[#24484E] bg-opacity-10 p-6 text-center font-Indie text-2xl"
       >
+        <!-- <div> {{ wastedStore }} groceries </div> -->
         <div>2 groceries</div>
         <div>thrown out in the past month</div>
       </div>
-      <img class="grow" src="../../assets/Vector.svg" />
+       <img class ="grow" src="../../assets/LadyEating.svg" />
     </div>
+
   </div>
 
   <div class="mb-4 text-xl">Groceries Wasted</div>
