@@ -5,16 +5,24 @@ import { useItem, useMisc } from "../../../store";
 import { InventoryRoute } from "../../../router";
 import { useSuggest } from "../../../composable/Suggest";
 
+const props = defineProps<{
+  defaultName?: string;
+  defaultQuantity?: string;
+  defaultUnit?: string;
+}>();
+
 const router = useRouter();
 const itemStore = useItem();
 const miscStore = useMisc();
 
-const quantity = ref<number>(1);
-const selectedCategory = ref<(typeof miscStore.categories)[number]>(
-  miscStore.categories[0] ?? "None"
+const quantity = ref<number>(
+  props.defaultQuantity === undefined ? 1 : parseInt(props.defaultQuantity)
 );
 const selectedUnit = ref<(typeof miscStore.units)[number]>(
-  miscStore.units[0] ?? "unit"
+  props.defaultUnit ?? miscStore.units[0] ?? "unit"
+);
+const selectedCategory = ref<(typeof miscStore.categories)[number]>(
+  miscStore.categories[0] ?? "None"
 );
 const purchaseDate = ref<string>("");
 const expiryDate = ref<string>("");
@@ -30,7 +38,7 @@ const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
 
 async function addItem() {
   await itemStore.addItem({
-    name: searchInput.value,
+    name: props.defaultName ?? searchInput.value,
     category: selectedCategory.value,
     quantity: quantity.value,
     unit: selectedUnit.value,
@@ -81,12 +89,22 @@ function cancel() {
     </div>
 
     <label class="mb-2 block font-medium text-primary-dark">Item Name*</label>
-    <input
-      v-model="searchInput"
-      type="text"
-      class="block w-full rounded-lg border border-primary-light p-2.5 text-gray-900"
-      placeholder="E.g. Apples"
-    />
+    <template v-if="defaultName !== undefined">
+      <input
+        :value="defaultName"
+        type="text"
+        class="block w-full rounded-lg border border-primary-light p-2.5 text-gray-900"
+        disabled
+      />
+    </template>
+    <template v-else>
+      <input
+        v-model="searchInput"
+        type="text"
+        class="block w-full rounded-lg border border-primary-light p-2.5 text-gray-900"
+        placeholder="E.g. Apples"
+      />
+    </template>
 
     <!-- Suggestion dropdown -->
     <div

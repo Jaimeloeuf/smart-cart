@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { useCart } from "../../../store";
-import { CartRoute, AddItemRoute, AddBatchRoute } from "../../../router";
+import { useCart, useItem } from "../../../store";
+import {
+  CartRoute,
+  EditCartItemRoute,
+  AddItemRoute,
+  AddBatchRoute,
+} from "../../../router";
 
 const props = defineProps<{ cartItemID: string }>();
 
 const router = useRouter();
 const cartStore = useCart();
+const itemStore = useItem();
 
 const item = cartStore.getItem(props.cartItemID);
 
@@ -21,9 +27,36 @@ const item = cartStore.getItem(props.cartItemID);
  * + quantity/unit.
  */
 function transferToInventory() {
-  router.push({ name: AddItemRoute.name });
+  const existsInInventory = itemStore.itemsArray.find(
+    (inventoryItem) => inventoryItem.name === item.name
+  );
 
-  router.push({ name: AddBatchRoute.name });
+  // Add a new batch if item already exists in inventory
+  if (existsInInventory !== undefined)
+    router.push({
+      name: AddBatchRoute.name,
+      params: { itemID: existsInInventory.id },
+      query: { defaultQuantity: item.quantity, defaultUnit: item.unit },
+    });
+  else
+    router.push({
+      name: AddItemRoute.name,
+      query: {
+        defaultName: item.name,
+        defaultQuantity: item.quantity,
+        defaultUnit: item.unit,
+      },
+    });
+
+  // Fire and forget to let this run in the background
+  cartStore.removeItem(item.id);
+}
+
+function deleteItem() {
+  // Fire and forget to let this run in the background
+  cartStore.removeItem(item.id);
+
+  router.push({ name: CartRoute.name });
 }
 </script>
 
@@ -32,7 +65,7 @@ function transferToInventory() {
     <div class="mb-6 flex flex-row justify-center text-center">
       <router-link :to="{ name: CartRoute.name }">Back</router-link>
       <p class="grow text-xl">Details</p>
-      <!-- <router-link :to="{ name: EditGroupRoute.name }">Edit</router-link> -->
+      <router-link :to="{ name: EditCartItemRoute.name }">Edit</router-link>
     </div>
 
     <div class="mb-2 flex flex-row text-xl">
@@ -69,6 +102,10 @@ function transferToInventory() {
         />
       </svg>
       Transfer to Inventory
+    </button>
+
+    <button class="fixed inset-x-0 bottom-10 text-red-600" @click="deleteItem">
+      Delete Item
     </button>
   </div>
 </template>

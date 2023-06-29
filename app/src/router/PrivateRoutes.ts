@@ -1,6 +1,4 @@
-// import type { RouteLocationNormalized } from "vue-router";
-// props: (route: RouteLocationNormalized) => route.query,
-
+import type { RouteLocationNormalized } from "vue-router";
 import type { PrivateRoute } from "./RouteTypes";
 import { AuthType } from "./AuthType";
 
@@ -82,6 +80,8 @@ export const ItemDetailRoute = <const>{
 export const AddItemRoute = <const>{
   name: "add-item",
   path: "/inventory/add/item",
+  // Props used to pass in default quantity and units using "Push to Inventory" feature
+  props: (route: RouteLocationNormalized) => route.query,
   component: () => import("../views/core/inventory/AddToInventory.vue"),
   meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
@@ -89,7 +89,11 @@ export const AddItemRoute = <const>{
 export const AddBatchRoute = <const>{
   name: "add-batch",
   path: "/inventory/add/batch/:itemID",
-  props: true,
+  // Props used to pass in default quantity and units using "Push to Inventory" feature
+  props: (route: RouteLocationNormalized) => ({
+    ...route.params,
+    ...route.query,
+  }),
   component: () => import("../views/core/inventory/AddNewBatch.vue"),
   meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
@@ -115,6 +119,14 @@ export const CartItemDetailRoute = <const>{
   path: "/cart/item-detail/:cartItemID",
   props: true,
   component: () => import("../views/core/cart/CartItemDetail.vue"),
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
+};
+
+export const EditCartItemRoute = <const>{
+  name: "cart-edit-item",
+  path: "/cart/edit-item/:cartItemID",
+  props: true,
+  component: () => import("../views/core/cart/EditCartItem.vue"),
   meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
@@ -147,6 +159,7 @@ const PrivateRoutes = [
   CartRoute,
   AddToCartRoute,
   CartItemDetailRoute,
+  EditCartItemRoute,
 ] satisfies Array<PrivateRoute>;
 
 /**

@@ -5,7 +5,7 @@ const notifStore = useNotif();
 </script>
 
 <template>
-  <div class="absolute inset-x-0 bottom-10 w-full px-4">
+  <div class="fixed inset-x-0 bottom-10 w-full px-4">
     <div
       class="flex w-full flex-row justify-between rounded-lg bg-gray-500 p-3 text-sm text-white shadow"
     >

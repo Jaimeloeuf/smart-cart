@@ -56,6 +56,22 @@ export const useCart = defineStore("cart", {
       };
     },
 
+    /**
+     * Update a single item in cart
+     */
+    async updateItem(item: CartItem) {
+      // @todo Call API before pushing locally for pessimistic UI update
+      this.cart[item.id] = item;
+    },
+
+    async removeImage(itemID: CartItem["id"], imageLink: string) {
+      const cartItem = this.getItem(itemID);
+      const index = cartItem.images.findIndex((link) => link === imageLink);
+
+      // @todo Call API
+      cartItem.images.splice(index, 1);
+    },
+
     async increaseItemQuantity(itemID: CartItem["id"]) {
       const item = this.cartArray.find((item) => item.id === itemID);
       if (item === undefined)
@@ -72,6 +88,11 @@ export const useCart = defineStore("cart", {
 
       // @todo Call API
       if (item.quantity > 1) item.quantity -= 1;
+    },
+
+    async removeItem(itemID: CartItem["id"]) {
+      // @todo Call API
+      delete this.cart[itemID];
     },
   },
 

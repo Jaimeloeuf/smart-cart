@@ -4,7 +4,11 @@ import { useRouter } from "vue-router";
 import { useItem, useMisc } from "../../../store";
 import { InventoryRoute } from "../../../router";
 
-const props = defineProps<{ itemID: string }>();
+const props = defineProps<{
+  itemID: string;
+  defaultQuantity?: string;
+  defaultUnit?: string;
+}>();
 
 const router = useRouter();
 const itemStore = useItem();
@@ -12,9 +16,11 @@ const miscStore = useMisc();
 
 const item = itemStore.getItem(props.itemID);
 
-const quantity = ref<number>(1);
+const quantity = ref<number>(
+  props.defaultQuantity === undefined ? 1 : parseInt(props.defaultQuantity)
+);
 const selectedUnit = ref<(typeof miscStore.units)[number]>(
-  miscStore.units[0] ?? "unit"
+  props.defaultUnit ?? miscStore.units[0] ?? "unit"
 );
 const purchaseDate = ref<string>("");
 const expiryDate = ref<string>("");
