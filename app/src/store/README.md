@@ -10,6 +10,8 @@
     - Stores all cart item data, and logic to refresh the data and other misc tasks.
 - [group](./group.store.ts)
     - Stores all user's group data, and logic to refresh the data and other misc tasks.
+- [waste](./waste.store.ts)
+    - Stores all wasted items, and logic to refresh the data.
 - [misc-data](./misc-data.store)
     - Stores all misc data in one place.
 - [notif](./notif.store)

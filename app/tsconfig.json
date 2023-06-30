@@ -25,7 +25,8 @@
       "DOM.Iterable",
 
       // Should target at least ES2017 to support `Object.values`
-      "ES2017"
+      // Should target at least ES2019 to support `Array.prototyp.flat`
+      "ES2019"
     ],
 
     "alwaysStrict": true,                             /* Ensure 'use strict' is always emitted. */

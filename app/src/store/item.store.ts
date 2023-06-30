@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
-import type { Item, Inventory, ExpiringInventory } from "../types";
-import { mockInventory, mockExpiringInventory } from "./item.mock";
+import { useWaste } from "./waste.store";
+import type { Item, Inventory, ExpiringItem } from "../types";
+import { mockInventory } from "./item.mock";
+import { numberOfDaysFromToday } from "../utils/numberOfDaysFromToday";
 
 /**
  * Type of this pinia store's state.
@@ -10,18 +12,30 @@ interface State {
    * A mapping of all the items in inventory
    */
   items: Inventory;
-  expiringItems: ExpiringInventory;
 }
 
 /**
  * Use this 'store' to manage inventory.
  */
 export const useItem = defineStore("item", {
-  state: (): State => ({ items: {}, expiringItems: {} }),
+  state: (): State => ({ items: {} }),
 
   getters: {
     itemsArray: (state) => Object.values(state.items),
-    expiringItemsArray: (state) => Object.values(state.expiringItems)
+
+    expiringItems(this: { itemsArray: Array<Item> }) {
+      // Find all the item batches that are expiring within the week and sort them
+      return this.itemsArray
+        .map((item) =>
+          item.batches
+            .filter((batch) => numberOfDaysFromToday(batch.expiry) < 8)
+            .map((batch) => ({ ...batch, name: item.name } as ExpiringItem))
+        )
+        .flat()
+        .sort((a, b) =>
+          a.expiry < b.expiry ? -1 : a.expiry > b.expiry ? 1 : 0
+        );
+    },
   },
 
   actions: {
@@ -31,7 +45,6 @@ export const useItem = defineStore("item", {
     async loadItems() {
       // @todo Call API
       this.items = mockInventory;
-      this.expiringItems = mockExpiringInventory;
     },
 
     /**
@@ -107,9 +120,12 @@ export const useItem = defineStore("item", {
     },
 
     /**
-     *
+     * Throw a grocery out from inventory and record waste
      */
-    throwBatch(itemID: Item["id"], batchID: Item["batches"][number]["id"]) {
+    async throwBatch(
+      itemID: Item["id"],
+      batchID: Item["batches"][number]["id"]
+    ) {
       // @todo Call API
 
       const item = this.getItem(itemID);
@@ -118,13 +134,21 @@ export const useItem = defineStore("item", {
       );
       // Error state that should not happen but if it does just ignore to prevent breaking
       if (batchIndex === -1) return;
-      item.batches.splice(batchIndex, 1);
+
+      const [wastedBatch] = item.batches.splice(batchIndex, 1);
+      // Error state that should not happen but if it does just ignore to prevent breaking
+      if (wastedBatch === undefined) return;
+
+      useWaste().addWaste(item.name, wastedBatch);
     },
 
     /**
      *
      */
-    finishBatch(itemID: Item["id"], batchID: Item["batches"][number]["id"]) {
+    async finishBatch(
+      itemID: Item["id"],
+      batchID: Item["batches"][number]["id"]
+    ) {
       // @todo Call API
 
       const item = this.getItem(itemID);
@@ -139,7 +163,7 @@ export const useItem = defineStore("item", {
     /**
      * Delete item from inventory
      */
-    deleteItem(itemID: Item["id"]) {
+    async deleteItem(itemID: Item["id"]) {
       // @todo Call API
       delete this.items[itemID];
     },

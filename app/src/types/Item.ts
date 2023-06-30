@@ -25,6 +25,17 @@ export type Item = {
 };
 
 /**
+ * Type to represent an expiring item batch in inventory
+ */
+export type ExpiringItem = {
+  id: string;
+  name: string;
+  quantity: number;
+  unit: string;
+  expiry: ISODateTimeString;
+};
+
+/**
  * Type to represent all items of a specific inventory
  */
 export type Inventory = Record<Item["id"], Item>;

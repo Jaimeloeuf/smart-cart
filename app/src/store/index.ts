@@ -9,4 +9,4 @@ export * from "./item.store";
 export * from "./cart.store";
 export * from "./misc-data.store";
 export * from "./notif.store";
-export * from "./home.store";
+export * from "./waste.store";

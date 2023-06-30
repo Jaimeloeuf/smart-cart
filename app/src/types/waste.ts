@@ -1,7 +1,7 @@
 import type { ISODateTimeString } from "./ISODateTimeString";
 
 /**
- * Type to represent a single Wasted Item in the cart
+ * Type to represent a single Wasted Item
  */
 export type WastedItem = {
   id: string;
@@ -12,6 +12,6 @@ export type WastedItem = {
 };
 
 /**
- * Type to represent all items of a specific cart
+ * Type to represent all wasted items
  */
-export type Wasted = Record<WastedItem["id"], WastedItem>;
+export type WastedItems = Record<WastedItem["id"], WastedItem>;
