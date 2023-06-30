@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { useGroup } from "../../store";
 import { CreateGroupRoute, GroupDetailsRoute } from "../../router";
+import { logout } from "../../utils/auth.mock";
 import type { Group } from "../../types";
 
 const showDrawer = ref<boolean>(false);
@@ -140,9 +141,9 @@ function selectGroup(groupID: Group["id"]) {
       <!-- Spacer divider that takes up all the space in the middle -->
       <div class="grow"></div>
 
-      <button
+      <router-link
+        :to="{}"
         class="flex w-full p-2 pb-0 text-start text-gray-700"
-        @click="() => {}"
       >
         <svg
           class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75"
@@ -159,11 +160,11 @@ function selectGroup(groupID: Group["id"]) {
         </svg>
 
         <span class="ml-3 flex-1">Profile</span>
-      </button>
+      </router-link>
 
-      <button
+      <router-link
+        :to="{}"
         class="flex w-full p-2 pb-0 text-start text-gray-700"
-        @click="() => {}"
       >
         <svg
           class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75"
@@ -182,7 +183,7 @@ function selectGroup(groupID: Group["id"]) {
         </svg>
 
         <span class="ml-3 flex-1">Settings</span>
-      </button>
+      </router-link>
 
       <button
         class="flex w-full p-2 pb-0 text-start text-gray-700"
@@ -205,7 +206,7 @@ function selectGroup(groupID: Group["id"]) {
 
       <button
         class="flex w-full p-2 pb-0 text-start text-gray-700"
-        @click="() => {}"
+        @click="logout"
       >
         <svg
           class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75"

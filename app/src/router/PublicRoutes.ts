@@ -33,13 +33,6 @@ export const OTPRoute = <const>{
   meta: { AuthRequirements: AuthType.PublicOnly, showNavBar: false },
 };
 
-export const SignupRoute = <const>{
-  name: "signup",
-  path: "/signup",
-  component: () => import("../views/core/auth/Signup.vue"),
-  meta: { AuthRequirements: AuthType.PublicOnly, showNavBar: false },
-};
-
 /**
  * This array is only used internally for typechecking and type creation purposes
  * only, and is never used as a value anywhere, therefore there is no need to worry
@@ -59,7 +52,6 @@ const PublicRoutes = [
   StartRoute,
   LoginRoute,
   OTPRoute,
-  SignupRoute,
 ] satisfies Array<PublicRoute>;
 
 /**

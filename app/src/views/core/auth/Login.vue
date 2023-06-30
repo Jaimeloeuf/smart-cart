@@ -37,6 +37,7 @@ function next() {
         v-model="phone"
         type="tel"
         class="w-full flex-1 rounded-lg rounded-l-none border border-primary-light p-2.5 text-2xl font-light"
+        @keydown.enter="next"
       />
     </div>
   </div>

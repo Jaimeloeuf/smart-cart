@@ -9,9 +9,7 @@ export async function initStoresOnLoginSuccess(): Promise<void> {
   console.log(`Running initStoresOnLoginSuccess`);
 
   // Run all of these initializations without any particular order
-  await Promise.all([
-    //
-  ]);
+  await Promise.all([useGroup().loadGroups(), useMisc().loadData()]);
 }
 
 /**

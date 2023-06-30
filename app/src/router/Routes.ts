@@ -1,7 +1,8 @@
 import type { RouteObject } from "./RouteTypes";
 
-import { StartRoute, LoginRoute, OTPRoute, SignupRoute } from "./PublicRoutes";
+import { StartRoute, LoginRoute, OTPRoute } from "./PublicRoutes";
 import {
+  SignupRoute,
   WelcomeRoute,
   HomeRoute,
   CreateGroupRoute,
@@ -29,6 +30,7 @@ import {
  */
 export const Routes = (<const>[
   // Private Routes
+  SignupRoute,
   WelcomeRoute,
   HomeRoute,
   CreateGroupRoute,
@@ -49,7 +51,6 @@ export const Routes = (<const>[
   StartRoute,
   LoginRoute,
   OTPRoute,
-  SignupRoute,
 
   /* Public Only Routes */
   // ...

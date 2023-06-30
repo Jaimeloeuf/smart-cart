@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { initStoresOnLoginSuccess } from "../../../store";
 import { StartRoute, SignupRoute, HomeRoute } from "../../../router";
+import { login, isNew } from "../../../utils/auth.mock";
 
 defineProps<{ phoneNumber: string }>();
 
@@ -10,7 +12,8 @@ const otp = ref<number | undefined>(undefined);
 
 async function otpVerify(otpNumber: number) {
   otpNumber;
-  return { success: true, isNew: true };
+  await login();
+  return { success: true, isNew: await isNew() };
 }
 
 async function verifyOTP() {
@@ -21,6 +24,9 @@ async function verifyOTP() {
   const { success, isNew } = await otpVerify(otpNumber);
 
   if (!success) return alert("Invalid OTP!");
+
+  // On login success initialise all the stores
+  await initStoresOnLoginSuccess();
 
   if (isNew) router.push({ name: SignupRoute.name });
   else router.push({ name: HomeRoute.name });
@@ -49,6 +55,7 @@ async function resendOTP() {
         type="number"
         class="my-10 w-1/2 rounded-lg border border-primary-light p-2.5 text-center text-2xl font-light"
         placeholder="4 Digit OTP"
+        @keydown.enter="verifyOTP"
       />
 
       <button @click="resendOTP">Resend OTP</button>

@@ -14,6 +14,13 @@ import { AuthType } from "./AuthType";
 
 /* ================================== Core Module Routes =============================== */
 
+export const SignupRoute = <const>{
+  name: "signup",
+  path: "/signup",
+  component: () => import("../views/core/auth/Signup.vue"),
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
+};
+
 export const WelcomeRoute = <const>{
   name: "welcome",
   path: "/welcome",
@@ -154,6 +161,7 @@ export const EditCartItemRoute = <const>{
  * a string literal type for `PrivateRouteNames` type to be properly inferred.
  */
 const PrivateRoutes = [
+  SignupRoute,
   WelcomeRoute,
   HomeRoute,
   CreateGroupRoute,

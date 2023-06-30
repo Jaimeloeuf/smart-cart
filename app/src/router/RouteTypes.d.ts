@@ -1,3 +1,5 @@
+import { AuthType } from "./AuthType";
+
 /**
  * Base Meta Details type for route objects to use
  */
