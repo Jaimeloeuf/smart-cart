@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useGroup, useWasted, useItem } from "../../store";
 import BurgerMenu from "../components/SideDrawer.vue";
+import { numberOfDaysFromToday } from "../../utils/numberOfDaysFromToday";
 
 const groupStore = useGroup();
 const wastedStore = useWasted();
@@ -15,8 +16,12 @@ const itemStore = useItem();
   </div>
 
   <div class="mb-2 text-xl text-[#9E2706]">Groceries to Finish This Week</div>
-
-  <div class="mb-10 flex flex-row rounded-lg bg-[#9E2706] bg-opacity-10 p-1">
+  <div
+    class="mb-10 h-40 flex flex-row overflow-y-scroll overflow-visible rounded-lg bg-[#9E2706] bg-opacity-10 p-1"
+  >
+  <!--div
+    class="mb-10 flex flex-row rounded-lg bg-[#9E2706] bg-opacity-10 p-1"
+  -->
     <table class="m-2 h-fit w-full text-left text-sm">
       <thead class="border-b border-gray-500">
         <tr>
@@ -26,21 +31,25 @@ const itemStore = useItem();
         </tr>
       </thead>
       <tbody>
-        <tr class="h-full w-full">
-          <th scope="row" class="px-6 py-2 font-normal" rowspan="2">
-            Spring Onion
+        <tr
+          class="h-full w-full"
+          v-for="(item, i) in itemStore.expiringItemsArray"
+          :key="i"
+        >
+          <th
+            scope="row"
+            class="px-6 py-2 font-normal"
+            :rowspan="item.numBatches"
+            v-if="!(item.numBatches > 1 && item.whichBatch > 1)"
+          >
+            {{ item.name }}
           </th>
-          <td class="px-6 py-2">1 stalk</td>
-          <td class="px-6 py-2">1 day</td>
-        </tr>
-        <tr>
-          <td class="px-6 py-2">5 stalks</td>
-          <td class="px-6 py-2">7 days</td>
-        </tr>
-        <tr>
-          <th scope="row" class="px-6 py-2 font-normal">Apples</th>
-          <td class="px-6 py-2">Black</td>
-          <td class="px-6 py-2">5 days</td>
+          <td class="px-6 py-2">
+            {{ item.quantity + " " + item.unit }}
+          </td>
+          <td class="px-6 py-2">
+            {{ numberOfDaysFromToday(item.expiry) }} day
+          </td>
         </tr>
       </tbody>
     </table>
