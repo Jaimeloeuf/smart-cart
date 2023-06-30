@@ -16,7 +16,13 @@ defineProps<{ item: Item }>();
         {{ item.name }}
       </h5>
 
-      <template v-if="item.batches.length === 1">
+      <template v-if="item.batches.length === 0">
+        <p class="font-extralight text-gray-600">
+          Nothing left, click to add a new batch!
+        </p>
+      </template>
+
+      <template v-else-if="item.batches.length === 1">
         <p
           v-for="(batch, i) in item.batches"
           :key="i"

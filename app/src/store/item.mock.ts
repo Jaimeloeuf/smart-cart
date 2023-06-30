@@ -18,14 +18,14 @@ export const mockInventory: Inventory = {
       {
         id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 3,
-        unit: "units",
+        unit: "unit",
         purchaseDate: generateIsoDateTimeString(-246400000),
         expiry: generateIsoDateTimeString(246400000),
       },
       {
         id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 6,
-        unit: "units",
+        unit: "unit",
         purchaseDate: generateIsoDateTimeString(-345600000),
         expiry: generateIsoDateTimeString(1045600000),
       },
@@ -39,7 +39,7 @@ export const mockInventory: Inventory = {
       {
         id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 3,
-        unit: "units",
+        unit: "unit",
         purchaseDate: generateIsoDateTimeString(-345600000),
         expiry: generateIsoDateTimeString(345600000),
       },
@@ -53,7 +53,7 @@ export const mockInventory: Inventory = {
       {
         id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 3,
-        unit: "units",
+        unit: "unit",
         purchaseDate: generateIsoDateTimeString(-645600000),
         expiry: generateIsoDateTimeString(645600000),
       },
@@ -67,7 +67,7 @@ export const mockInventory: Inventory = {
       {
         id: Math.trunc(Math.random() * 1000000).toString(),
         quantity: 3,
-        unit: "units",
+        unit: "unit",
         purchaseDate: generateIsoDateTimeString(-745600000),
         expiry: generateIsoDateTimeString(745600000),
       },

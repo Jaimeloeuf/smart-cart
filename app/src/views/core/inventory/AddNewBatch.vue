@@ -29,8 +29,10 @@ async function save() {
   await itemStore.addBatch(item.id, {
     quantity: quantity.value,
     unit: selectedUnit.value,
-    purchaseDate: purchaseDate.value,
-    expiry: expiryDate.value,
+
+    // Convert yyyy-mm-dd strings used by input[type="date"] into ISODateTime strings
+    purchaseDate: new Date(purchaseDate.value).toISOString(),
+    expiry: new Date(expiryDate.value).toISOString(),
   });
 
   router.push({ name: InventoryRoute.name });

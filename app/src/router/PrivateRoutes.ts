@@ -70,10 +70,18 @@ export const InventoryRoute = <const>{
 };
 
 export const ItemDetailRoute = <const>{
-  name: "item-detail",
-  path: "/item-detail/:itemID",
+  name: "inventory-item-detail",
+  path: "/inventory/item-detail/:itemID",
   props: true,
   component: () => import("../views/core/inventory/ItemDetail.vue"),
+  meta: { AuthRequirements: AuthType.Private, showNavBar: false },
+};
+
+export const EditInventoryItemRoute = <const>{
+  name: "inventory-edit-item",
+  path: "/inventory/edit-item/:itemID",
+  props: true,
+  component: () => import("../views/core/inventory/EditInventoryItem.vue"),
   meta: { AuthRequirements: AuthType.Private, showNavBar: false },
 };
 
@@ -154,6 +162,7 @@ const PrivateRoutes = [
   EditGroupRoute,
   InventoryRoute,
   ItemDetailRoute,
+  EditInventoryItemRoute,
   AddItemRoute,
   AddBatchRoute,
   CartRoute,

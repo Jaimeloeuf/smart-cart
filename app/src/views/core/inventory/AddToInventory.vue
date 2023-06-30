@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useItem, useMisc } from "../../../store";
-import { InventoryRoute } from "../../../router";
+import { useItem, useMisc, useNotif } from "../../../store";
+import { InventoryRoute, AddBatchRoute } from "../../../router";
 import { useSuggest } from "../../../composable/Suggest";
 
 const props = defineProps<{
@@ -14,6 +14,7 @@ const props = defineProps<{
 const router = useRouter();
 const itemStore = useItem();
 const miscStore = useMisc();
+const notifStore = useNotif();
 
 const quantity = ref<number>(
   props.defaultQuantity === undefined ? 1 : parseInt(props.defaultQuantity)
@@ -33,6 +34,30 @@ const { searchInput, results, hideDropDown, selectSuggestion } = useSuggest(
     keys: ["name"],
     threshold: 0.5,
     resultLimit: 10,
+  },
+
+  undefined,
+
+  // Function that runs on user clicking a suggested item name.
+  // Will redirect user to the add new batch to inventory view if item already exists
+  function (selectedSuggestion: string) {
+    const inventoryItem = itemStore.itemsArray.find(
+      (item) => item.name === selectedSuggestion
+    );
+
+    // This should not happen, but if it does not exists, just return
+    if (inventoryItem === undefined) return;
+
+    // Show snackbar notification to let user know about the redirect reason.
+    notifStore.setSnackbar(
+      "You have this item in your Inventory, add a new batch instead!",
+      8
+    );
+
+    router.push({
+      name: AddBatchRoute.name,
+      params: { itemID: inventoryItem.id },
+    });
   }
 );
 
@@ -42,8 +67,10 @@ async function addItem() {
     category: selectedCategory.value,
     quantity: quantity.value,
     unit: selectedUnit.value,
-    purchaseDate: purchaseDate.value,
-    expiry: expiryDate.value,
+
+    // Convert yyyy-mm-dd strings used by input[type="date"] into ISODateTime strings
+    purchaseDate: new Date(purchaseDate.value).toISOString(),
+    expiry: new Date(expiryDate.value).toISOString(),
   });
 
   router.push({ name: InventoryRoute.name });
@@ -168,7 +195,7 @@ function cancel() {
     </label>
 
     <div class="mb-4">
-      <label class="font-medium text-primary-dark"> Purchase Date </label>
+      <label class="font-medium text-primary-dark">Purchase Date</label>
       <input
         v-model="purchaseDate"
         type="date"
@@ -177,7 +204,7 @@ function cancel() {
     </div>
 
     <div class="mb-4">
-      <label class="font-medium text-primary-dark"> Expiry Date </label>
+      <label class="font-medium text-primary-dark">Expiry Date</label>
       <input
         v-model="expiryDate"
         type="date"

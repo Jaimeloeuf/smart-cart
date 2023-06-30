@@ -74,6 +74,14 @@ export const useItem = defineStore("item", {
     },
 
     /**
+     * Update an existing item in inventory.
+     */
+    async updateItem(item: Item) {
+      // @todo Call API
+      this.items[item.id] = item;
+    },
+
+    /**
      * Add a new batch to an existing item.
      */
     async addBatch(
@@ -93,6 +101,44 @@ export const useItem = defineStore("item", {
         purchaseDate: item.purchaseDate,
         expiry: item.expiry,
       });
+    },
+
+    /**
+     *
+     */
+    throwBatch(itemID: Item["id"], batchID: Item["batches"][number]["id"]) {
+      // @todo Call API
+
+      const item = this.getItem(itemID);
+      const batchIndex = item.batches.findIndex(
+        (batch) => batch.id === batchID
+      );
+      // Error state that should not happen but if it does just ignore to prevent breaking
+      if (batchIndex === -1) return;
+      item.batches.splice(batchIndex, 1);
+    },
+
+    /**
+     *
+     */
+    finishBatch(itemID: Item["id"], batchID: Item["batches"][number]["id"]) {
+      // @todo Call API
+
+      const item = this.getItem(itemID);
+      const batchIndex = item.batches.findIndex(
+        (batch) => batch.id === batchID
+      );
+      // Error state that should not happen but if it does just ignore to prevent breaking
+      if (batchIndex === -1) return;
+      item.batches.splice(batchIndex, 1);
+    },
+
+    /**
+     * Delete item from inventory
+     */
+    deleteItem(itemID: Item["id"]) {
+      // @todo Call API
+      delete this.items[itemID];
     },
   },
 
