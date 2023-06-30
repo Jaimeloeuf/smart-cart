@@ -26,7 +26,26 @@ export default defineConfig(({ mode }) => ({
       devOptions: { enabled: true },
 
       registerType: "autoUpdate",
-      manifest: { name: "SmartCart" },
+
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
+      manifest: {
+        name: "SmartCart",
+        short_name: "SmartCart",
+        description: "SmartCart 🥹🫶🏻✨",
+        theme_color: "#FFFFFF",
+        icons: [
+          {
+            src: "pwa-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "pwa-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      },
     }),
 
     // Enable https by default as ios requires https connections to give camera access
