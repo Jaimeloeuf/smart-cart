@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { useGroup, useWasted } from "../../store";
+import { useGroup, useWasted, useItem } from "../../store";
 import BurgerMenu from "../components/SideDrawer.vue";
 
 const groupStore = useGroup();
 const wastedStore = useWasted();
+const itemStore = useItem();
 </script>
 
 <template>

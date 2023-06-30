@@ -73,4 +73,25 @@ export const mockInventory: Inventory = {
       },
     ],
   },
+  "5": {
+    id: "5",
+    name: "Spring Onion",
+    category: "Fruits & Vegetables",
+    batches: [
+      {
+        id: Math.trunc(Math.random() * 1000000).toString(),
+        quantity: 1,
+        unit: "stalk",
+        purchaseDate: generateIsoDateTimeString(-246400000),
+        expiry: generateIsoDateTimeString(86400000),
+      },
+      {
+        id: Math.trunc(Math.random() * 1000000).toString(),
+        quantity: 5,
+        unit: "stalks",
+        purchaseDate: generateIsoDateTimeString(-345600000),
+        expiry: generateIsoDateTimeString(604800000),
+      },
+    ],
+  },
 };
