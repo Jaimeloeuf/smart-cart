@@ -15,34 +15,42 @@ const itemStore = useItem();
     </span>
   </div>
 
-  <div class="mb-2 text-xl text-[#9E2706]">Groceries to Finish This Week</div>
-  <div class="mb-10 flex flex-row rounded-lg bg-[#9E2706] bg-opacity-10 p-1">
-    <table class="m-2 h-fit w-full text-left text-sm">
-      <thead class="border-b border-gray-500">
-        <tr>
-          <th scope="col" class="px-6 py-2">Item</th>
-          <th scope="col" class="px-6 py-2">Quantity</th>
-          <th scope="col" class="px-6 py-2">Expiry</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="(item, i) in itemStore.expiringItems"
-          :key="i"
-          class="h-full w-full"
-        >
-          <th scope="row" class="px-6 py-2 font-normal">
-            {{ item.name }}
-          </th>
-          <td class="px-6 py-2">{{ item.quantity }} {{ item.unit }}</td>
-          <td class="px-6 py-2">
-            {{ numberOfDaysFromToday(item.expiry) }} day
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="mb-4">
+  <template v-if="itemStore.expiringItems.length === 0">
+    <div class="my-8 text-lg text-[#9E2706]">
+      No Groceries Expiring This Week <span class="text-2xl">👍🏻</span>
+    </div>
+  </template>
+  <template v-else>
+    <div class="mb-2 text-xl text-[#9E2706]">Groceries to Finish This Week</div>
+    <div class="mb-10 flex flex-row rounded-lg bg-[#9E2706] bg-opacity-10">
+      <table class="m-2 w-full text-left text-sm">
+        <thead class="border-b border-gray-500">
+          <tr>
+            <th scope="col" class="px-6 py-2">Item</th>
+            <th scope="col" class="px-6 py-2">Quantity</th>
+            <th scope="col" class="px-6 py-2">Expiry</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, i) in itemStore.expiringItems"
+            :key="i"
+            class="h-full w-full"
+          >
+            <th scope="row" class="px-6 py-2 font-normal">
+              {{ item.name }}
+            </th>
+            <td class="px-6 py-2">{{ item.quantity }} {{ item.unit }}</td>
+            <td class="px-6 py-2">
+              {{ numberOfDaysFromToday(item.expiry) }} day
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </template>
+
+  <div class="mb-6">
     <div class="text-xl text-[#24484E]">Let's Do Our Part to</div>
     <div class="font-Indie text-3xl text-[#24484E]">SAVE FOOD</div>
     <div class="flex flex-row">
@@ -56,7 +64,7 @@ const itemStore = useItem();
     </div>
   </div>
 
-  <div class="mb-4 text-xl">Groceries Wasted</div>
+  <div class="mb-4 text-xl">Groceries Wasted 👎🏻</div>
   <div class="mb-4 flex flex-row rounded-lg bg-[#B2B2B2] bg-opacity-10 p-6">
     <table class="m-auto h-fit w-full text-left">
       <thead class="w-full border-b border-gray-500 border-opacity-50">

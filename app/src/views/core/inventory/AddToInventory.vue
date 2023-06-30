@@ -91,23 +91,25 @@ function cancel() {
       <button @click="addItem">Save</button>
     </div>
 
-    <div
-      class="w-full rounded-lg border bg-primary-dark p-3 text-center text-white"
-    >
-      <svg
-        class="m-0 inline-block h-5 w-6 p-0"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+    <label for="image-upload">
+      <div
+        class="w-full rounded-lg border bg-primary-dark p-3 text-center text-white"
       >
-        <path
-          d="M4 16C3.56 16 3.1832 15.8432 2.8696 15.5296C2.556 15.216 2.39947 14.8395 2.4 14.4V12H4V14.4H13.6V12H15.2V14.4C15.2 14.84 15.0432 15.2168 14.7296 15.5304C14.416 15.844 14.0395 16.0005 13.6 16H4ZM2.4 7.2V1.6C2.4 1.16 2.5568 0.783201 2.8704 0.469601C3.184 0.156001 3.56053 -0.000531975 4 1.35823e-06H10.4L15.2 4.8V7.2H13.6V5.6H9.6V1.6H4V7.2H2.4ZM0 10.4V8.8H17.6V10.4H0Z"
-          fill="white"
-        />
-      </svg>
+        <svg
+          class="m-0 inline-block h-5 w-6 p-0"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 16C3.56 16 3.1832 15.8432 2.8696 15.5296C2.556 15.216 2.39947 14.8395 2.4 14.4V12H4V14.4H13.6V12H15.2V14.4C15.2 14.84 15.0432 15.2168 14.7296 15.5304C14.416 15.844 14.0395 16.0005 13.6 16H4ZM2.4 7.2V1.6C2.4 1.16 2.5568 0.783201 2.8704 0.469601C3.184 0.156001 3.56053 -0.000531975 4 1.35823e-06H10.4L15.2 4.8V7.2H13.6V5.6H9.6V1.6H4V7.2H2.4ZM0 10.4V8.8H17.6V10.4H0Z"
+            fill="white"
+          />
+        </svg>
 
-      Scan Receipt
-      <input id="image-upload" type="file" class="hidden" />
-    </div>
+        Scan Receipt
+        <input id="image-upload" type="file" class="hidden" />
+      </div>
+    </label>
 
     <div class="my-6 flex items-center">
       <div class="h-px flex-grow bg-gray-400"></div>

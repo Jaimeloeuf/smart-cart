@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
 import { useItem } from "../../../store";
 import { InventoryRoute, EditInventoryItemRoute } from "../../../router";
 import { numberOfDaysFromToday } from "../../../utils/numberOfDaysFromToday";
@@ -6,9 +7,15 @@ import { getDateString } from "../../../utils/getDateString";
 
 const props = defineProps<{ itemID: string }>();
 
+const router = useRouter();
 const itemStore = useItem();
 
 const item = itemStore.getItem(props.itemID);
+
+async function deleteItem() {
+  await itemStore.deleteItem(item.id);
+  router.push({ name: InventoryRoute.name });
+}
 </script>
 
 <template>
@@ -99,10 +106,7 @@ const item = itemStore.getItem(props.itemID);
       </div>
     </div>
 
-    <button
-      class="mb-8 mt-6 w-full text-red-700"
-      @click="itemStore.deleteItem(item.id)"
-    >
+    <button class="mb-8 mt-6 w-full text-red-700" @click="deleteItem">
       <p class="text-center">Delete Item</p>
     </button>
   </div>
