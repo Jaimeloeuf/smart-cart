@@ -1,12 +1,23 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useGroup } from "../../store";
 import { CreateGroupRoute, GroupDetailsRoute } from "../../router";
 import { logout } from "../../utils/auth.mock";
+import Version from "./Version.vue";
 import type { Group } from "../../types";
 
 const showDrawer = ref<boolean>(false);
 const showGroups = ref<boolean>(true);
+
+// Easter eggs!
+const showVersionCount = ref<number>(0);
+const heartCount = ref<number>(0);
+watch(showDrawer, (shown) => {
+  if (!shown) {
+    showVersionCount.value = 0;
+    heartCount.value = 0;
+  }
+});
 
 const groupStore = useGroup();
 
@@ -57,6 +68,11 @@ function selectGroup(groupID: Group["id"]) {
       <p class="p-2 text-gray-900" @click="showDrawer = false">
         <span class="text-2xl">SmartCart</span>
         <span class="ml-3 text-3xl">🥹🫶🏻✨</span>
+        <template v-if="heartCount > 1">
+          <span v-for="heart in heartCount - 1" :key="heart" class="text-3xl">
+            💛
+          </span>
+        </template>
       </p>
 
       <div class="w-full">
@@ -162,9 +178,9 @@ function selectGroup(groupID: Group["id"]) {
         <span class="ml-3 flex-1">Profile</span>
       </router-link>
 
-      <router-link
-        :to="{}"
+      <button
         class="flex w-full p-2 pb-0 text-start text-gray-700"
+        @click="showVersionCount++"
       >
         <svg
           class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75"
@@ -183,11 +199,11 @@ function selectGroup(groupID: Group["id"]) {
         </svg>
 
         <span class="ml-3 flex-1">Settings</span>
-      </router-link>
+      </button>
 
       <button
         class="flex w-full p-2 pb-0 text-start text-gray-700"
-        @click="() => {}"
+        @click="heartCount++"
       >
         <svg
           class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75"
@@ -234,6 +250,8 @@ function selectGroup(groupID: Group["id"]) {
       </button>
 
       <br />
+
+      <Version v-if="showVersionCount > 2" />
     </div>
   </aside>
 </template>
