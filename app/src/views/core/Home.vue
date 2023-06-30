@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { useGroup } from "../../store";
+import { useGroup, useWasted, useItem } from "../../store";
 import BurgerMenu from "../components/SideDrawer.vue";
+import { numberOfDaysFromToday } from "../../utils/numberOfDaysFromToday";
 
 const groupStore = useGroup();
+const wastedStore = useWasted();
+const itemStore = useItem();
 </script>
 
 <template>
@@ -13,10 +16,14 @@ const groupStore = useGroup();
   </div>
 
   <div class="mb-2 text-xl text-[#9E2706]">Groceries to Finish This Week</div>
-
-  <div class="mb-10 flex flex-row rounded-lg bg-[#9E2706] bg-opacity-10 p-1">
-    <table class="text-left text-sm">
-      <thead class="w-full border-b border-gray-500">
+  <div
+    class="mb-10 h-40 flex flex-row overflow-y-scroll overflow-visible rounded-lg bg-[#9E2706] bg-opacity-10 p-1"
+  >
+  <!--div
+    class="mb-10 flex flex-row rounded-lg bg-[#9E2706] bg-opacity-10 p-1"
+  -->
+    <table class="m-2 h-fit w-full text-left text-sm">
+      <thead class="border-b border-gray-500">
         <tr>
           <th scope="col" class="px-6 py-2">Item</th>
           <th scope="col" class="px-6 py-2">Quantity</th>
@@ -24,24 +31,29 @@ const groupStore = useGroup();
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row" class="px-6 py-2" rowspan="2">Spring Onion</th>
-          <td class="px-6 py-2">1 stalk</td>
-          <td class="px-6 py-2">1 day</td>
-        </tr>
-        <tr>
-          <td class="px-6 py-2">5 stalks</td>
-          <td class="px-6 py-2">7 days</td>
-        </tr>
-        <tr>
-          <th scope="row" class="px-6 py-2">Apples</th>
-          <td class="px-6 py-2">Black</td>
-          <td class="px-6 py-2">5 days</td>
+        <tr
+          class="h-full w-full"
+          v-for="(item, i) in itemStore.expiringItemsArray"
+          :key="i"
+        >
+          <th
+            scope="row"
+            class="px-6 py-2 font-normal"
+            :rowspan="item.numBatches"
+            v-if="!(item.numBatches > 1 && item.whichBatch > 1)"
+          >
+            {{ item.name }}
+          </th>
+          <td class="px-6 py-2">
+            {{ item.quantity + " " + item.unit }}
+          </td>
+          <td class="px-6 py-2">
+            {{ numberOfDaysFromToday(item.expiry) }} day
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
-
   <div class="mb-4">
     <div class="text-xl text-[#24484E]">Let's Do Our Part to</div>
     <div class="font-Indie text-3xl text-[#24484E]">SAVE FOOD</div>
@@ -49,16 +61,16 @@ const groupStore = useGroup();
       <div
         class="mb-4 rounded-lg border border-gray-200 bg-[#24484E] bg-opacity-10 p-6 text-center font-Indie text-2xl"
       >
-        <div>2 groceries</div>
+        <div>{{ wastedStore.wastedGroceriesAmount }} groceries</div>
         <div>thrown out in the past month</div>
       </div>
-      <img class="grow" src="../../assets/Vector.svg" />
+      <img class="grow" src="../../assets/LadyEating.svg" />
     </div>
   </div>
 
   <div class="mb-4 text-xl">Groceries Wasted</div>
-  <div class="mb-4 flex flex-row rounded-lg border border-gray-200 p-6">
-    <table class="text-left">
+  <div class="mb-4 flex flex-row rounded-lg bg-[#B2B2B2] bg-opacity-10 p-6">
+    <table class="m-auto h-fit w-full text-left">
       <thead class="w-full border-b border-gray-500 border-opacity-50">
         <tr>
           <th scope="col" class="px-6 py-3">Item</th>
@@ -66,13 +78,9 @@ const groupStore = useGroup();
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row" class="px-6 py-2">Peanut Butter</th>
-          <td class="px-6 py-2">1/4 jar</td>
-        </tr>
-        <tr>
-          <th scope="row" class="px-6 py-2">Bread</th>
-          <td class="px-6 py-2">2 slices</td>
+        <tr v-for="(item, i) in wastedStore.cartArray" :key="i">
+          <th scope="row" class="px-6 py-2 font-normal">{{ item.name }}</th>
+          <td class="px-6 py-2">{{ item.quantity + " " + item.unit }}</td>
         </tr>
       </tbody>
     </table>

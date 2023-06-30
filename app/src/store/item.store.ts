@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import type { Item, Inventory } from "../types";
-import { mockInventory } from "./item.mock";
+import type { Item, Inventory, ExpiringInventory } from "../types";
+import { mockInventory, mockExpiringInventory } from "./item.mock";
 
 /**
  * Type of this pinia store's state.
@@ -10,16 +10,18 @@ interface State {
    * A mapping of all the items in inventory
    */
   items: Inventory;
+  expiringItems: ExpiringInventory;
 }
 
 /**
  * Use this 'store' to manage inventory.
  */
 export const useItem = defineStore("item", {
-  state: (): State => ({ items: {} }),
+  state: (): State => ({ items: {}, expiringItems: {} }),
 
   getters: {
     itemsArray: (state) => Object.values(state.items),
+    expiringItemsArray: (state) => Object.values(state.expiringItems)
   },
 
   actions: {
@@ -29,6 +31,7 @@ export const useItem = defineStore("item", {
     async loadItems() {
       // @todo Call API
       this.items = mockInventory;
+      this.expiringItems = mockExpiringInventory;
     },
 
     /**

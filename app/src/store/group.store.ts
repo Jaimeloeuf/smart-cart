@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { useItem } from "./item.store";
 import { useCart } from "./cart.store";
+import { useWasted } from "./home.store";
 import type { Group, Groups } from "../types";
 import { mockGroups } from "./group.mock";
 
@@ -72,6 +73,7 @@ export const useGroup = defineStore("group", {
       // Call API through other stores to load details of the current group
       useItem().loadItems();
       useCart().loadCart();
+      useWasted().loadWastedItems();
     },
 
     /**
