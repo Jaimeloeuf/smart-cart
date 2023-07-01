@@ -9,13 +9,13 @@ import { LoginRoute } from "../../router";
       class="-my-20 flex h-screen w-full flex-col items-center justify-center"
     >
       <img src="../../assets/logo.svg" />
-      <p class="-mt-20 font-light">Plan Ahead, Waste Less</p>
+      <p class="-mt-20 font-light">Manage Groceries to Reduce Food Waste</p>
 
       <router-link
         :to="{ name: LoginRoute.name }"
         class="mt-36 w-full rounded-lg bg-primary-dark p-3.5 text-center font-medium text-white"
       >
-        Start
+        Get Started
       </router-link>
     </div>
   </div>

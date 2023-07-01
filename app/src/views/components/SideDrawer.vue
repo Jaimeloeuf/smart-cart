@@ -93,7 +93,7 @@ function selectGroup(groupID: Group["id"]) {
               clip-rule="evenodd"
             />
           </svg>
-          <span class="ml-3 flex-1 text-left"> Groups </span>
+          <span class="ml-3 flex-1 text-left">Groups</span>
           <svg
             class="h-6 w-6"
             :class="{ '-rotate-90': !showGroups }"

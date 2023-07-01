@@ -19,7 +19,7 @@ function next() {
   <div>
     <div class="mb-2 flex flex-row justify-center text-center">
       <router-link :to="{ name: StartRoute.name }">Back</router-link>
-      <p class="grow text-2xl font-light">Log In</p>
+      <p class="grow text-2xl font-light">Get Started</p>
       <button @click="next">Next</button>
     </div>
 

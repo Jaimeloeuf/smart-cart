@@ -16,7 +16,7 @@ function save() {
   <div>
     <div class="mb-2 flex flex-row justify-center text-center">
       <span></span>
-      <p class="ml-7 grow text-2xl font-light">Sign Up</p>
+      <p class="ml-7 grow text-2xl font-light">Get Started</p>
       <button @click="save">Save</button>
     </div>
 

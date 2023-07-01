@@ -41,7 +41,7 @@ async function resendOTP() {
   <div class="flex flex-col justify-center">
     <div class="mb-2 flex flex-row text-center">
       <router-link :to="{ name: StartRoute.name }">Back</router-link>
-      <p class="grow text-2xl font-light">Log In</p>
+      <p class="grow text-2xl font-light">Get Started</p>
       <button @click="verifyOTP">Next</button>
     </div>
 
